@@ -1,0 +1,202 @@
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(40, 175, 176);
+  --color-primary-dark: rgb(33, 146, 146);
+  --color-secondary: #ddcecd;
+  --color-tertiary: rgb(239, 242, 241);
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--default-border-radius);
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  padding: 0.7em 1.2em;
+  margin: 0 0.3em;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background-color: transparent;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  height: 3em;
+  width: 10em;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  color: white;
+}
+
+.buttonPrimary:hover {
+  color: white;
+  background-color: var(--color-primary-dark);
+}
+
+.buttonPrimary:disabled {
+  background-color: var(--color-gray-alpha);
+  border-color: var(--color-gray);
+  cursor: not-allowed;
+}
+
+/* Modal */
+.close {
+  height: 70px;
+  width: 70px;
+  font-size: 2.5em;
+  border: none;
+  border-right: 1px solid var(--color-gray);
+  background-color: var(--color-background);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.close:hover {
+  font-size: 3em;
+  background-color: var(--color-tertiary);
+  color: red;
+}
+
+.title {
+  font-size: 4em;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.error {
+  color: red;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: -150px;
+}
+
+/* Add Form */
+.container {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Promo Duration */
+.duration {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 30px;
+}
+
+.duration > section {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+  position: relative;
+}
+
+/* Navigation */
+.navigation {
+  height: 70px;
+  display: flex;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Status Bar */
+.statusBar {
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  position: relative;
+}
+
+.statusSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-right: 1px solid var(--color-gray);
+  background-color: var(--color-background);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.statusSection:last-of-type {
+  border: none;
+}
+
+.statusSection:hover {
+  background-color: var(--color-tertiary);
+}
+
+.statusSection:disabled {
+  color: black;
+  cursor: not-allowed;
+}
+
+.sectionText {
+  max-width: 50%;
+  overflow-wrap: break-word;
+}
+.sectionTitle {
+  font-size: 0.8em;
+  font-weight: 500;
+  color: var(--color-gray);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.sectionIcon {
+  color: var(--color-gray);
+  font-size: 2em;
+  margin-right: 8px;
+}
+
+.sectionSelection {
+  text-align: left;
+  font-weight: 800;
+}
+
+/* Add Form */
+.container form {
+  width: 500px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.container form input,
+.container form select {
+  height: 45px;
+  border: 1px solid var(--color-gray);
+  background-color: white;
+  margin-bottom: 30px;
+  padding: 0 15px;
+  flex-grow: 1;
+}
+
+.container form label {
+  margin-bottom: 5px;
+}
+
+.container form ::placeholder {
+  font-style: italic;
+  color: var(--color-gray);
+}

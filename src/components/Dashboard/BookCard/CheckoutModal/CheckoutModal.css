@@ -1,0 +1,8 @@
+:root {
+  --color-primary: rgb(40, 175, 176);
+}
+
+.completedSection {
+  border-bottom: 4px solid var(--color-primary) !important;
+  /* box-shadow: 0 2px 4px rgba(33, 146, 146, 0.7); */
+}

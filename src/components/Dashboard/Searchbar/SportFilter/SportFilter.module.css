@@ -1,0 +1,72 @@
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(40, 175, 176);
+  --color-primary-dark: #219292;
+  --color-secondary: #ddcecd;
+  --color-tertiary: #eff2f1;
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-red: red;
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+.sportFilter {
+  position: relative;
+}
+
+.sportFilter > button {
+  color: var(--color-gray-alpha);
+  background-color: transparent;
+  /* width: 100%; */
+  border: 1px solid var(--color-gray);
+  border-radius: var(--default-border-radius);
+  margin: 8px;
+  padding: 11px 20px;
+  cursor: pointer;
+  font-size: 1.8em;
+  transition: all 0.2s ease-in-out;
+}
+
+.sportFilter > button:hover {
+  color: var(--color-gray);
+  background-color: var(--color-tertiary);
+}
+
+.sportFilter .sportOptions {
+  width: 115px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0px 4px rgba(34, 25, 25, 0.3);
+  background-color: var(--color-background);
+  border-radius: var(--default-border-radius);
+  overflow: hidden;
+}
+
+.sportOptions button {
+  height: 25px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background-color: var(--color-background);
+  cursor: pointer;
+  padding: 0.2em 0.2em 0.2em 0.4em;
+  transition: all 0.1s ease-in-out;
+}
+
+.sportOptions button:hover {
+  font-weight: 600;
+  background-color: var(--color-tertiary);
+}
+
+.close {
+  text-align: center !important;
+}
+
+.close:hover {
+  color: var(--color-red);
+}

@@ -1,0 +1,186 @@
+/* 
+  Athlos - Global Styles
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,700&family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(40, 175, 176);
+  --color-primary-dark: #219292;
+  --color-secondary: #ddcecd;
+  --color-tertiary: #eff2f1;
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--default-border-radius);
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  padding: 0.7em 1.2em;
+  margin: 0 0.3em;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  color: white;
+}
+
+.buttonPrimary:hover {
+  color: white;
+  background-color: var(--color-primary-dark);
+}
+
+/* Profile Icon */
+.profile {
+  background-color: transparent;
+  border: none;
+  border-radius: var(--default-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.profile:hover {
+  background-color: var(--color-tertiary);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  transform: scale(1.01);
+}
+
+.profileIcon {
+  height: 45px;
+  width: 45px;
+  border-radius: 100%;
+  background-color: var(--color-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.profileIcon > span {
+  color: white;
+  font-size: 1.2em;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.profileName {
+  text-align: right;
+  margin-right: 0.5em;
+}
+
+.profileName span {
+  display: block;
+}
+
+.profileName span:first-of-type {
+  font-weight: 800;
+}
+
+.login {
+  text-align: right;
+}
+
+/* .login button {
+  margin: 0 0 0 0.6em;
+} */
+
+.profileOptions {
+  /* padding: 0.7em 2em; */
+  text-align: center;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background-color: var(--color-background);
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+  border-radius: var(--default-border-radius);
+  cursor: default;
+  overflow: hidden;
+}
+
+.profileOptions button {
+  border-radius: unset;
+  width: 100%;
+  border: none;
+  margin: 0;
+}
+
+.border {
+  border-bottom: 1px solid black !important;
+}
+
+.profileOptions button:hover {
+  color: var(--color-gray);
+  /* border: 1px solid var(--color-gray); */
+  background-color: var(--color-tertiary);
+}
+
+.profileOptions i {
+  margin-right: 0.5em;
+}
+
+/* Responsive Layout */
+@media screen and (min-width: 1230px) {
+  .container {
+    width: 1150px;
+  }
+
+  .logo {
+    width: 175px;
+    font-size: 1.9em;
+  }
+
+  .menu {
+    width: 750px;
+  }
+
+  .login {
+    width: 230px;
+  }
+
+  .profile {
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 1630px) {
+  .logo {
+    width: 200px;
+  }
+
+  .menu {
+    width: 1000px;
+  }
+
+  .login {
+    width: 300px;
+  }
+
+  .profile {
+    width: 220px;
+  }
+}

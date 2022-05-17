@@ -1,0 +1,395 @@
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(40, 175, 176);
+  --color-primary-dark: rgb(33, 146, 146);
+  --color-secondary: #ddcecd;
+  --color-tertiary: rgb(239, 242, 241);
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-red: red;
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--default-border-radius);
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  padding: 0.7em 1.2em;
+  margin: 0 0.3em;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  color: white;
+}
+
+.buttonPrimary:hover {
+  color: white;
+  background-color: var(--color-primary-dark);
+}
+
+.cancelButton {
+  width: 90%;
+  color: var(--color-red);
+  border: 1px solid transparent;
+  position: absolute;
+  bottom: 1em;
+}
+
+.cancelButton:hover {
+  color: var(--color-red);
+  border: 1px solid var(--color-red);
+  background-color: transparent;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-gray-alpha);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: var(--color-background);
+  height: 95vh;
+  width: 95vw;
+  border-radius: var(--default-border-radius);
+  position: relative;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.5);
+  overflow: hidden;
+}
+
+.close {
+  height: 70px;
+  width: 70px;
+  font-size: 2.5em;
+  border: none;
+  border-right: 1px solid var(--color-gray);
+  background-color: var(--color-background);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.close:hover {
+  font-size: 3em;
+  background-color: var(--color-tertiary);
+  color: red;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 4em;
+  text-align: center;
+  margin: 1em 0;
+}
+
+/* Navigation */
+.navigation {
+  height: 70px;
+  display: flex;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Status Bar */
+.statusBar {
+  width: 100%;
+  display: flex;
+  /* flex: 1 1 0; */
+  flex-grow: 1;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  position: relative;
+}
+
+.statusSection {
+  /* height: 70px; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-right: 1px solid var(--color-gray);
+  background-color: var(--color-background);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.statusSection:last-of-type {
+  border: none;
+}
+
+.statusSection:hover {
+  background-color: var(--color-tertiary);
+}
+
+.statusSection:disabled {
+  color: black;
+  cursor: not-allowed;
+}
+
+.sectionText {
+  width: 105px;
+}
+
+.sectionTitle {
+  font-size: 0.8em;
+  font-weight: 500;
+  color: var(--color-gray);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.sectionIcon {
+  color: var(--color-gray);
+  font-size: 2em;
+  margin-right: 8px;
+}
+
+.sectionSelection {
+  text-align: left;
+  font-weight: 800;
+}
+
+/* Map */
+.mapContainer {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+/* QR Code */
+.code {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+}
+
+/* Checkout */
+.checkout {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-top: 2em;
+}
+
+.summary .title {
+  color: var(--color-gray);
+  font-size: 1.8em;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.payment form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 25px;
+}
+
+.payment input,
+.payment select {
+  height: 45px;
+  border: 1px solid var(--color-gray);
+  background-color: white;
+  margin-right: 25px;
+  padding: 0 15px;
+  flex-grow: 1;
+}
+
+.payment ::placeholder {
+  color: var(--color-gray);
+}
+
+.payment form > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary {
+  height: 600px;
+  width: 400px;
+  background-color: var(--color-tertiary);
+  padding: 1.5em;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  position: relative;
+}
+
+.summary .image {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.summary .image img {
+  min-height: 100%;
+  width: 100%;
+}
+
+.summary span {
+  margin-left: 5px;
+}
+
+.summary .buttonPrimary {
+  width: calc(100% - 3em);
+  position: absolute;
+  bottom: 1.5em;
+  margin: 0;
+}
+
+.summaryDetails {
+  width: 100%;
+  text-align: left;
+  margin: 1em 0 2em 0;
+  position: relative;
+}
+
+.summaryDetails div {
+  margin-bottom: 8px;
+}
+
+.summaryDetails .name {
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: 500;
+  font-family: var(--font-title);
+  margin-bottom: 0.5em;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.summaryDetails i {
+  color: var(--color-gray);
+  margin-right: 0.3em;
+}
+
+.summaryDetails .description,
+.reservedOptions {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.summaryDetails .reservedOptions {
+  display: flex;
+  flex-direction: column;
+}
+
+.reservedOptions > div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.reservedOptions .itemName {
+  width: 150px;
+}
+
+.reservedOptions .itemCount {
+  width: 40px;
+}
+
+.reservedOptions .itemsTotal {
+  width: 65px;
+  text-align: right;
+}
+
+.reservedPricing {
+  text-align: right;
+}
+
+.reservationTotal {
+  font-size: 1.1em;
+  font-weight: 800;
+}
+
+/* Scroll Shadows */
+.summaryContent {
+  /* height: 250px; */
+  overflow: scroll;
+}
+.shadowTop,
+.shadowBottom {
+  position: absolute;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 10px;
+}
+
+.shadowTop {
+  top: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent);
+  opacity: 0;
+  display: none;
+}
+
+.shadowBottom {
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent);
+  display: none;
+}
+
+.ratings {
+  padding-left: 30em;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 2em;
+}
+
+.reviews {
+  padding-left: 30em;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 2em;
+}
+
+/* Responsive Layout */
+@media screen and (min-width: 1630px) {
+  .sectionText {
+    width: 115px;
+  }
+
+  .summary {
+    width: 435px;
+  }
+}

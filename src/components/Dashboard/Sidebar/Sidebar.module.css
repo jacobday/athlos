@@ -1,0 +1,754 @@
+/* 
+  Athlos - Global Styles
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,700&family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: Roman;
+  src: url("../../../../public/fonts/RomanSD.ttf");
+}
+
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(40, 175, 176);
+  --color-primary-dark: #219292;
+  --color-secondary: #ddcecd;
+  --color-tertiary: #eff2f1;
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+/* General */
+body {
+  background-color: var(--color-background);
+  font-family: var(--font-body);
+  font-size: 16px;
+  /* height: 200vh; Temporary */
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  transition: color 0.3s ease-out;
+}
+
+a:hover,
+a:active {
+  color: var(--color-primary);
+}
+
+textarea:focus,
+input:focus,
+input[type]:focus,
+.uneditable-input:focus {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 1px 1px rgba(33, 146, 146, 0.08) inset,
+    0 0 8px rgba(33, 146, 146, 0.7);
+  outline: 0 none;
+}
+
+::selection {
+  color: white;
+  background-color: var(--color-primary);
+}
+
+.container {
+  margin: 0 auto;
+}
+
+/* Branding */
+.logo {
+  font-family: var(--font-logo);
+}
+
+.logo a {
+  color: black !important;
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--default-border-radius);
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  padding: 0.7em 1.2em;
+  margin: 0 0.3em;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background-color: transparent;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  color: white;
+}
+
+.buttonPrimary:hover {
+  color: white;
+  background-color: var(--color-primary-dark);
+}
+
+/* Navigation */
+.topnav {
+  height: 4.5em;
+  position: fixed;
+  background-color: transparent;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 990;
+  display: flex;
+  align-items: center;
+  transition: box-shadow 0.5s ease, background-color 0.5s ease;
+}
+
+.topnavOverlay {
+  background-color: rgba(255, 255, 255, 0.99);
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation .logo {
+  font-size: 1.9em;
+  font-weight: 900;
+}
+
+.navigation .login {
+  text-align: right;
+}
+
+.login button {
+  margin: 0 0 0 0.6em;
+}
+
+.menuItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.menuItem a {
+  color: var(--color-gray);
+}
+
+.menuItem a:hover {
+  color: var(--color-primary);
+}
+
+.menuItem li {
+  list-style: none;
+  padding: 0 3em;
+  text-transform: uppercase;
+}
+
+.navigation .profile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navigation .profileIcon {
+  height: 45px;
+  width: 45px;
+  border-radius: 100%;
+  background-color: var(--color-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.navigation .profileIcon > span {
+  color: white;
+  font-size: 1.2em;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.navigation .profileName {
+  margin-right: 0.5em;
+}
+
+.navigation .profileName span {
+  display: block;
+}
+
+.navigation .profileName span:first-of-type {
+  font-weight: 800;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  padding-top: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--color-gray-alpha);
+  z-index: 999;
+}
+
+.modal input[type="text"],
+.modal input[type="password"] {
+  width: 100%;
+  height: 25px;
+  border: none;
+  border-radius: var(--default-border-radius);
+  background-color: var(--color-tertiary);
+  padding: 0.2em 0.5em;
+}
+
+.inputContainer {
+  position: relative;
+  margin: 0.3em 0 1.5em 0;
+}
+
+.inputContainer .error {
+  color: red;
+  bottom: 0;
+  left: 0;
+  margin-top: 0.5em;
+}
+
+.modal label {
+  font-weight: 600;
+}
+
+.modal label > input {
+  width: auto;
+}
+
+.modal .name {
+  width: 50%;
+}
+
+.modal .name > input {
+  width: 90%;
+}
+
+.nameContainer {
+  display: flex;
+  width: 475px;
+}
+
+.buttonSubmit {
+  display: block;
+  margin: 0;
+  width: 103.5%;
+}
+
+.modalContent {
+  background-color: var(--color-background);
+  margin: 5% auto 15% auto;
+  width: 500px;
+  border-radius: var(--default-border-radius);
+  position: relative;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.5);
+}
+
+.modalContainer {
+  padding: 1em;
+  overflow: hidden;
+}
+
+.passwordContainer {
+  position: relative;
+}
+
+.passwordContainer > button {
+  height: 31px;
+  width: 31px;
+  border: none;
+  border-radius: var(--default-border-radius);
+  background-color: var(--color-tertiary);
+  position: absolute;
+  top: 0;
+  right: -15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.passwordContainer > button:hover {
+  background-color: #c8c9c8;
+}
+
+.close {
+  height: 0.7em;
+  width: 0.7em;
+  position: absolute;
+  top: 0;
+  right: -45px;
+  font-size: 40px;
+  padding: 0.1em;
+  line-height: 0.7;
+  text-align: center;
+  color: var(--color-background);
+  border-radius: var(--default-border-radius);
+}
+
+.close:hover {
+  cursor: pointer;
+  background-color: var(--color-secondary);
+  color: red;
+}
+
+.tablink {
+  margin-right: 0.3em;
+  border-radius: 0%;
+  background-color: transparent;
+  border: 0;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.tablink:hover {
+  color: var(--color-primary-dark);
+  cursor: pointer;
+}
+
+.tablinkContainer {
+  margin-top: 0.2em;
+  border-bottom: 1px solid var(--color-tertiary);
+}
+
+.active {
+  color: var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.tab {
+  padding: 1em 1em 1em 0;
+}
+
+.thirdParty {
+  display: flex;
+  justify-content: center;
+  margin: 0.2em 0 1em 0;
+  padding-bottom: 2em;
+  border-bottom: 1px solid var(--color-tertiary);
+}
+
+#login,
+#sign-up {
+  display: none;
+}
+
+/* Responsive Layout */
+@media screen and (min-width: 1230px) {
+  .container {
+    width: 1150px;
+  }
+
+  .navigation .logo {
+    width: 175px;
+    font-size: 1.9em;
+  }
+
+  .navigation .menu {
+    width: 750px;
+  }
+
+  .navigation .login {
+    width: 230px;
+  }
+}
+
+@media screen and (min-width: 1630px) {
+  body {
+    font-size: 18px;
+  }
+
+  .container {
+    width: 1500px;
+  }
+
+  .navigation .logo {
+    width: 200px;
+  }
+
+  .navigation .menu {
+    width: 1000px;
+  }
+
+  .navigation .login {
+    width: 300px;
+  }
+
+  .intro img {
+    max-width: 1000px !important;
+  }
+
+  .modal .name > input {
+    width: 88%;
+  }
+
+  .shortcutContainer button {
+    width: 260px !important;
+  }
+}
+
+/* Animations */
+.fadeIn {
+  animation: fade-in 3s ease forwards;
+}
+
+.slideInRight {
+  transform: translateX(100%);
+  animation: slide-in 0.3s ease-out forwards;
+}
+
+.slideInLeft {
+  transform: translateX(-100%);
+  animation: slide-in 0.3s ease-out forwards;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Accessability */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: -1s !important;
+    animation-duration: 1s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+  }
+}
+
+/* 
+    Athlos - Booking Styles 
+*/
+/* @import url(../../styles.css); */
+
+/* General */
+body {
+  background-color: var(--color-tertiary);
+}
+
+/* Global Overrides */
+.topnav {
+  width: 80%;
+  right: 0;
+  left: unset;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+  border-radius: var(--default-border-radius);
+}
+
+/* Search Bar */
+.search {
+  width: 80%;
+  position: relative;
+}
+
+.search input {
+  width: 100%;
+  height: 35px;
+  padding: 0.2em 0.5em;
+  border: none;
+  background-color: var(--color-tertiary);
+  border-radius: var(--default-border-radius);
+}
+
+.filter {
+  height: 25px;
+  width: 35px;
+  margin: 5px;
+  background-color: var(--color-tertiary);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  border: none;
+  border: 1px solid var(--color-gray);
+  border-radius: var(--default-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+}
+
+.filter:hover {
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  color: white;
+  cursor: pointer;
+}
+
+.filterOptions {
+  display: none;
+  position: absolute;
+  right: -85px;
+  list-style: none;
+  background-color: var(--color-tertiary);
+  border-radius: var(--default-border-radius);
+  padding: 0.7em 2em;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+  padding: 1.5em 0 1.5em 1em;
+  border-radius: var(--default-border-radius);
+}
+
+.sidebar .logo {
+  font-size: 1.9em;
+  text-align: center;
+  margin-bottom: 0.7em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--color-tertiary);
+}
+
+.sidebar .title {
+  padding: 0.5em;
+  font-weight: 200;
+  font-size: 0.8em;
+  margin: 1.5em 0 0em 0;
+}
+
+.sidebar i {
+  margin-right: 0.5em;
+}
+
+.sideTabLink {
+  font-size: 1.1em;
+  font-weight: 500;
+  text-align: left;
+  width: 220px;
+  display: block;
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--default-border-radius);
+  padding: 0.7em;
+  margin: 0 0 0.5em 0;
+  transition: all 0.2s ease;
+}
+
+.sideTabLink:hover {
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 0 3px black;
+  background-color: var(--color-secondary);
+  box-shadow: 0 1px 4px rgba(41, 41, 41, 0.3) inset;
+  cursor: pointer;
+}
+
+/* Tabs */
+.tab-container {
+  position: absolute;
+  top: 72px;
+  right: 0;
+  width: 80%;
+  margin-top: 23px;
+  background-color: transparent;
+  border-radius: var(--default-border-radius);
+}
+
+.side-tab {
+  display: none;
+  padding: 1.5em;
+}
+
+.activeTablink {
+  font-weight: 700;
+  color: var(--color-background);
+  text-shadow: 1px 0.5px 3px black !important;
+  background: linear-gradient(
+    101deg,
+    #5c258d 0%,
+    #4389a2 40%,
+    #4389a2 60%,
+    #5c258d 100%
+  );
+  background-size: 300% auto;
+  box-shadow: 0 1px 4px rgba(41, 41, 41, 0.3) inset,
+    0 3px 5px rgba(41, 41, 41, 0.3) !important;
+  animation: scrollgradient 60s linear infinite;
+}
+
+/* Cards */
+.card {
+  height: 400px;
+  width: 300px;
+  margin: 1em;
+  border-radius: var(--default-border-radius);
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+  animation: all 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  box-shadow: 0 1px 5px rgba(34, 25, 25, 0.3);
+}
+
+.card .image {
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid #37392e;
+}
+
+.card img {
+  height: 170px;
+}
+
+.card button {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+}
+
+.card .title {
+  font-family: var(--font-title);
+  font-size: 1.4em;
+  font-weight: 500;
+  margin-bottom: 0.4em;
+}
+
+.card .content {
+  padding: 0.5em 1em 1em 1em;
+}
+
+.card .location {
+  font-weight: 300;
+}
+
+.card .location i {
+  margin-right: 0.3em;
+}
+
+/* Book Tab */
+.book-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+/* My Bookings Tab */
+.mybookings-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+/* Dashboard Tab */
+.shortcut-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.shortcut-container button {
+  width: 240px;
+  margin-bottom: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  background-color: white;
+  border: none;
+  animation: all 0.2s ease-in-out;
+}
+
+.shortcut-container button:hover {
+  color: white;
+  border: none;
+  background-color: white;
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.5);
+}
+
+.shortcut-container button > .text {
+  text-align: left;
+}
+
+.shortcut-container button i {
+  font-size: 1.8em;
+}
+
+.shortcut-container .title {
+  color: var(--color-gray);
+  font-size: 1.2em;
+}
+
+.shortcut-container .subtitle {
+  color: var(--color-primary);
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+.shortcut-container .icon {
+  height: 40px;
+  width: 40px;
+  padding: 0.7em;
+  border-radius: 100%;
+  background-color: rgba(40, 175, 176, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Shortcut Colors */
+.icon-orange {
+  background-color: rgb(223, 140, 67, 0.5) !important;
+}
+
+.icon-purple {
+  background-color: rgb(144, 122, 214, 0.5) !important;
+}
+
+.icon-green {
+  background-color: rgb(161, 228, 77, 0.5) !important;
+}
+
+/* Animations */
+@keyframes scrollgradient {
+  to {
+    background-position: 300% center;
+  }
+}

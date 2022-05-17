@@ -1,0 +1,117 @@
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(40, 175, 176);
+  --color-primary-dark: #219292;
+  --color-secondary: #ddcecd;
+  --color-tertiary: #eff2f1;
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-red: red;
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+/* Search Bar */
+.search {
+  width: 85%;
+  position: relative;
+}
+
+.searchDropdown {
+  height: 100px;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  background-color: var(--color-background);
+  box-shadow: 0 2px 3px rgba(34, 25, 25, 0.2);
+  border-radius: 0 0 var(--default-border-radius) var(--default-border-radius);
+  /* overflow-y: hidden; */
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.searchOptions {
+  max-height: 100%;
+  width: 75%;
+  border-right: 1px solid var(--color-gray);
+
+  border-radius: 0 0 0 var(--default-border-radius);
+  display: flex;
+  flex-flow: column nowrap;
+  overflow-y: scroll;
+}
+
+.searchOptions button {
+  height: 25px;
+  letter-spacing: 0.5px;
+  background-color: var(--color-background);
+  border: none;
+  padding: 0.2em 0.2em 0.2em 0.4em;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.searchOptions button:hover {
+  background-color: var(--color-tertiary);
+  border-left: 2px solid var(--color-gray);
+  font-weight: 600;
+}
+
+.search .filterOptions {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search input {
+  font-size: 1.05em;
+  font-weight: 500;
+  width: 100%;
+  height: 35px;
+  padding: 0.2em 0.5em;
+  border: none;
+  background-color: var(--color-tertiary);
+  border-radius: var(--default-border-radius);
+}
+
+.clear {
+  height: 100%;
+  width: 35px;
+  color: var(--color-gray);
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.clear:hover {
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+
+  color: var(--color-gray-alpha);
+}
+
+.voiceSearch {
+  position: absolute;
+  top: 0;
+  right: -3em;
+}
+
+/* Remove Default Webkit Styling */
+.search input[type="search"]::-webkit-search-decoration,
+.search input[type="search"]::-webkit-search-cancel-button,
+.search input[type="search"]::-webkit-search-results-button,
+.search input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}

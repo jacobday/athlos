@@ -1,0 +1,35 @@
+:root {
+  --color-tertiary: #eff2f1;
+}
+
+.button {
+  color: #5383ec;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  padding: 0.6em;
+  background-color: white;
+  border-radius: 50px;
+  border: 2px solid var(--color-tertiary);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  border: 2px solid rgb(222, 223, 222);
+  transform: scale(1.015, 1.015);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.button span {
+  width: 100%;
+}
+
+.button img {
+  height: 24px;
+  width: 24px;
+}

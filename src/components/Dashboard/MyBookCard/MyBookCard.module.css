@@ -1,0 +1,202 @@
+/* 
+  Athlos - Global Styles
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,700&family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(40, 175, 176);
+  --color-primary-dark: #219292;
+  --color-secondary: #ddcecd;
+  --color-tertiary: #eff2f1;
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-red: red;
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  transition: color 0.3s ease-out;
+}
+
+a:hover,
+a:active {
+  color: var(--color-primary);
+}
+
+textarea:focus,
+input:focus,
+input[type]:focus,
+.uneditable-input:focus {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 1px 1px rgba(33, 146, 146, 0.08) inset,
+    0 0 8px rgba(33, 146, 146, 0.7);
+  outline: 0 none;
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--default-border-radius);
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  padding: 0.7em 1.2em;
+  margin: 0 0.3em;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  color: white;
+}
+
+.buttonPrimary:hover {
+  color: white;
+  background-color: var(--color-primary-dark);
+}
+
+.cancelButton {
+  color: var(--color-red);
+  border: 1px solid transparent;
+}
+
+.cancelButton:hover {
+  color: var(--color-red);
+  border: 1px solid var(--color-red);
+  background-color: transparent;
+}
+
+/* Cards */
+.card {
+  height: 400px;
+  width: 300px;
+  border-radius: var(--default-border-radius);
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+  animation: all 0.2s ease;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 1px 5px rgba(34, 25, 25, 0.3);
+  transform: scale(1.01);
+}
+
+.card .image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid var(--color-gray);
+}
+
+.card img {
+  height: 170px;
+  min-width: 100%;
+}
+
+.card .available {
+  font-size: 1.05em;
+  color: #2bc016;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-weight: 800;
+  padding: 0.5em;
+  border-radius: 0 var(--default-border-radius);
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: default;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(0.3em);
+  opacity: 0;
+}
+
+.card .available:hover {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.card .cancelButton {
+  position: absolute;
+  bottom: 1em;
+}
+
+.card .buttonPrimary {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}
+
+.card .title {
+  height: 50px;
+  font-family: var(--font-title);
+  font-size: 1.4em;
+  font-weight: 500;
+  margin-bottom: 0.4em;
+  word-wrap: break-word;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-tertiary);
+}
+
+.card .content {
+  padding: 0.5em 1em 1em 1em;
+}
+
+.card .content div {
+  font-weight: 300;
+  margin-bottom: 0.5em;
+}
+
+.card i {
+  color: var(--color-gray);
+  margin-right: 0.3em;
+}
+
+.card .time {
+  border-bottom: 1px solid var(--color-tertiary);
+  padding-bottom: 6px;
+}
+
+.card .time > span {
+  font-weight: 700 !important;
+}
+
+/* Animations */
+.fadeIn {
+  animation: fade-in 3s ease forwards;
+}
+
+.loadIn {
+  animation: load-in 0.4s ease forwards;
+  opacity: 0.7;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes load-in {
+  to {
+    opacity: 1;
+  }
+}

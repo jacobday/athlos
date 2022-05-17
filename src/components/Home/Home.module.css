@@ -1,0 +1,371 @@
+/* 
+    Athlos - Global Styles
+ */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,700&family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: Roman;
+  src: url("../../../public/fonts/RomanSD.ttf");
+}
+
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(41, 176, 176);
+  --color-primary-dark: #219292;
+  --color-primary-tint: #caefef;
+  --color-secondary: #ddcecd;
+  --color-tertiary: #eff2f1;
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+/* General */
+body {
+  background-color: var(--color-background);
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  transition: color 0.3s ease-out;
+}
+
+a:hover,
+a:active {
+  color: var(--color-primary);
+}
+
+textarea:focus,
+input:focus,
+input[type]:focus,
+.uneditable-input:focus {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 1px 1px rgba(33, 146, 146, 0.08) inset,
+    0 0 8px rgba(33, 146, 146, 0.7);
+  outline: 0 none;
+}
+
+::selection {
+  color: white;
+  background-color: var(--color-primary);
+}
+
+.container {
+  margin: 0 auto;
+}
+
+/* Branding */
+.logo {
+  font-family: var(--font-logo);
+}
+
+.logo a {
+  color: black !important;
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--default-border-radius);
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  padding: 0.7em 1.2em;
+  margin: 0 0.3em;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background-color: transparent;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  color: white;
+}
+
+.buttonPrimary:hover {
+  color: white;
+  background-color: var(--color-primary-dark);
+}
+
+/* Navigation */
+.topnav {
+  height: 4.5em;
+  position: fixed;
+  background-color: transparent;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 990;
+  display: flex;
+  align-items: center;
+  transition: box-shadow 0.5s ease, background-color 0.5s ease;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation .logo {
+  font-size: 1.9em;
+  font-weight: 900;
+}
+
+.navigation .login {
+  text-align: right;
+}
+
+.menuItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.menuItem a {
+  color: var(--color-gray);
+}
+
+.menuItem a:hover {
+  color: var(--color-primary);
+}
+
+.menuItem li {
+  list-style: none;
+  padding: 0 3em;
+  text-transform: uppercase;
+}
+
+/* Responsive Layout */
+@media screen and (min-width: 1230px) {
+  .container {
+    width: 1150px;
+  }
+
+  .navigation .logo {
+    width: 175px;
+    font-size: 1.9em;
+  }
+
+  .navigation .menu {
+    width: 750px;
+  }
+
+  .navigation .login {
+    width: 230px;
+  }
+}
+
+@media screen and (min-width: 1630px) {
+  body {
+    font-size: 18px;
+  }
+
+  .container {
+    width: 1500px;
+  }
+
+  .navigation .logo {
+    width: 200px;
+  }
+
+  .navigation .menu {
+    width: 1000px;
+  }
+
+  .navigation .login {
+    width: 300px;
+  }
+
+  .intro img {
+    max-width: 1000px !important;
+  }
+
+  .modal .name > input {
+    width: 88%;
+  }
+
+  .shortcutContainer button {
+    width: 260px !important;
+  }
+}
+
+/* Animations */
+.fadeIn {
+  animation: fade-in 3s ease forwards;
+}
+
+.slideInRight {
+  transform: translateX(100%);
+  animation: slide-in 0.3s ease-out forwards;
+}
+
+.slideInLeft {
+  transform: translateX(-100%);
+  animation: slide-in 0.3s ease-out forwards;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Accessability */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: -1s !important;
+    animation-duration: 1s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+  }
+}
+
+/* 
+    Athlos - Index Styles 
+*/
+/* @import url(../../styles.css); */
+
+/* Section 1 - Athlos Introduction */
+.intro {
+  height: 70vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid var(--color-tertiary);
+}
+
+.intro .text {
+  width: 40%;
+  text-align: left;
+  padding: 3em 3em 3em 0;
+}
+
+.intro .image {
+  position: absolute;
+  right: -60px;
+}
+
+.intro .title {
+  font-weight: 600;
+  font-size: 2.5rem;
+  padding: 3em 3em 0em 0;
+  line-height: 2;
+}
+
+.intro .description {
+  padding: 3em 3em 0em 0;
+  line-height: 2;
+  opacity: 0;
+  transform: translateY(0.5em);
+}
+
+.intro img {
+  max-width: 780px;
+}
+
+.intro button {
+  margin: 1em 0 0 0;
+}
+
+/* Information */
+.info {
+  padding: 3em;
+  /* background-color: var(--color-primary-tint); */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.info .icon {
+  height: 75px;
+  width: 75px;
+  /* background-image: url('../../../public/images/blob.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; */
+  color: var(--color-primary);
+  font-size: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.info .icon img {
+  height: 160%;
+  width: 160%;
+  position: absolute;
+  opacity: 0.35;
+  z-index: -1;
+  left: -10px;
+}
+
+.info .title {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-bottom: 0.3em;
+}
+
+.info .desc {
+  max-width: 180px;
+  color: var(--color-gray);
+  text-align: center;
+}
+
+/* Footer */
+.footer {
+  color: #eff2f1;
+  background-color: #08415c;
+  /* padding: 1em; */
+  padding: 3em 0;
+}
+
+.footer .container {
+  display: flex;
+  /* justify-content: center; */
+  justify-content: left;
+  align-items: center;
+}
+
+.footer section {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1em;
+}
+
+.footer .footerlogo {
+  font-family: var(--font-logo);
+  font-size: 30px;
+}
+
+.footer .footerlogo a {
+  color: white;
+}

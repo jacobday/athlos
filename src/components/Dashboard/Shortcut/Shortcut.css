@@ -1,0 +1,27 @@
+.icon {
+  height: 40px;
+  width: 40px;
+  padding: 0.7em;
+  border-radius: 100%;
+  background-color: rgba(40, 175, 176, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Shortcut Colors */
+.iconBlue {
+  background-color: rgba(40, 175, 176, 0.5) !important;
+}
+
+.iconOrange {
+  background-color: rgb(223, 140, 67, 0.5) !important;
+}
+
+.iconPurple {
+  background-color: rgb(144, 122, 214, 0.5) !important;
+}
+
+.iconGreen {
+  background-color: rgb(161, 228, 77, 0.5) !important;
+}

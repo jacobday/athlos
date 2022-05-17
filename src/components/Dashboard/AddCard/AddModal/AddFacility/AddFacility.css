@@ -1,0 +1,41 @@
+:root {
+  --color-gray: rgb(79, 90, 107);
+}
+
+/* Override GooglePlacesAutocomplete Styling */
+.css-2b097c-container {
+  margin-bottom: 30px;
+}
+
+.css-yk16xz-control {
+  border-radius: 0 !important;
+  border: 1px solid var(--color-gray);
+  border-color: var(--color-gray) !important;
+}
+
+.css-1pahdxg-control {
+  border-color: var(--color-gray) !important;
+  border-style: none;
+  border-radius: 0 !important;
+  box-shadow: none;
+}
+
+.css-sk39y4-Mt {
+  padding: 0 15px;
+}
+
+.css-1w8j83l-placeholder {
+  margin-left: 0 !important;
+}
+
+.css-avp5x-Mt {
+  height: 45px;
+}
+
+.css-avp5x-Mt input:focus {
+  box-shadow: none !important;
+}
+
+.css-1gtu0rj-indicatorContainer {
+  color: var(--color-gray) !important;
+}

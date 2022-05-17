@@ -1,0 +1,46 @@
+.sideTabLink {
+  font-size: 1.1em;
+  font-weight: 500;
+  text-align: left;
+  width: 220px;
+  display: block;
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--default-border-radius);
+  padding: 0.7em;
+  margin: 0 0 0.5em 0;
+  transition: all 0.2s ease;
+}
+
+.sideTabLink:hover {
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 0 3px black;
+  background-color: var(--color-secondary);
+  box-shadow: 0 1px 4px rgba(41, 41, 41, 0.3) inset;
+  cursor: pointer;
+}
+
+.activeTabLink {
+  font-weight: 700;
+  color: var(--color-background);
+  text-shadow: 1px 0.5px 3px black !important;
+  background: linear-gradient(
+    101deg,
+    #5c258d 0%,
+    #4389a2 40%,
+    #4389a2 60%,
+    #5c258d 100%
+  );
+  background-size: 300% auto;
+  box-shadow: 0 1px 4px rgba(41, 41, 41, 0.3) inset,
+    0 3px 5px rgba(41, 41, 41, 0.3) !important;
+  animation: scrollgradient 60s linear infinite;
+}
+
+/* Animations */
+@keyframes scrollgradient {
+  to {
+    background-position: 300% center;
+  }
+}

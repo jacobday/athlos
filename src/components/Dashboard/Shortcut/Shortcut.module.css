@@ -1,0 +1,121 @@
+/* 
+  Athlos - Global Styles
+*/
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,700&family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(40, 175, 176);
+  --color-primary-dark: #219292;
+  --color-secondary: #ddcecd;
+  --color-tertiary: #eff2f1;
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  transition: color 0.3s ease-out;
+}
+
+a:hover,
+a:active {
+  color: var(--color-primary);
+}
+
+textarea:focus,
+input:focus,
+input[type]:focus,
+.uneditable-input:focus {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 1px 1px rgba(33, 146, 146, 0.08) inset,
+    0 0 8px rgba(33, 146, 146, 0.7);
+  outline: 0 none;
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--default-border-radius);
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  padding: 0.7em 1.2em;
+  margin: 0 0.3em;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background-color: transparent;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  color: white;
+}
+
+.buttonPrimary:hover {
+  color: white;
+  background-color: var(--color-primary-dark);
+}
+
+.sideTab {
+  padding: 1.5em;
+}
+
+.shortcutContainer button {
+  width: 240px;
+  margin-bottom: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  background-color: white;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.shortcutContainer button:hover {
+  color: white;
+  border: none;
+  background-color: white;
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.5);
+  transform: scale(1.01);
+}
+
+.shortcutContainer button > .text {
+  text-align: left;
+}
+
+.shortcutContainer button i {
+  font-size: 1.8em;
+}
+
+.shortcutContainer .title {
+  color: var(--color-gray);
+  font-size: 1.2em;
+}
+
+.shortcutContainer .subtitle {
+  color: var(--color-primary);
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+/* Animations */
+@keyframes scrollgradient {
+  to {
+    background-position: 300% center;
+  }
+}

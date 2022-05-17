@@ -1,0 +1,8 @@
+:root {
+  --color-primary: rgb(40, 175, 176);
+}
+
+.activeTimeSlot {
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary) !important;
+}

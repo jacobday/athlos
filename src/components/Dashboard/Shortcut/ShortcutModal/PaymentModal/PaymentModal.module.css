@@ -1,0 +1,146 @@
+:root {
+  --font-logo: "Roman", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-title: "Noto Serif", serif;
+  --color-primary: rgb(40, 175, 176);
+  --color-primary-dark: rgb(33, 146, 146);
+  --color-secondary: #ddcecd;
+  --color-tertiary: rgb(239, 242, 241);
+  --color-gray: rgb(79, 90, 107);
+  --color-gray-alpha: rgba(79, 90, 107, 0.8);
+  --color-background: white; /* #fcfcfc */
+  --default-border-radius: 5px;
+}
+
+/* Buttons */
+.button {
+  border-radius: var(--default-border-radius);
+  border: 1px solid var(--color-gray);
+  color: var(--color-gray);
+  padding: 0.7em 1.2em;
+  margin: 1em auto;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background-color: transparent;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  height: 3em;
+  width: 10em;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 5px rgba(41, 41, 41, 0.3);
+  color: white;
+}
+
+.buttonPrimary:hover {
+  color: white;
+  background-color: var(--color-primary-dark);
+}
+
+.buttonPrimary:disabled {
+  background-color: var(--color-gray-alpha);
+  border-color: var(--color-gray);
+  cursor: not-allowed;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-gray-alpha);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: var(--color-background);
+  height: 95vh;
+  width: 95vw;
+  border-radius: var(--default-border-radius);
+  position: relative;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.5);
+  overflow-y: scroll;
+}
+
+.close {
+  height: 70px;
+  width: 70px;
+  font-size: 2.5em;
+  border: none;
+  border-right: 1px solid var(--color-gray);
+  border-bottom: 1px solid var(--color-gray);
+  background-color: var(--color-background);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.close:hover {
+  font-size: 3em;
+  background-color: var(--color-tertiary);
+  color: red;
+}
+
+.title {
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Interests */
+.sportName {
+  font-size: 1.4em;
+}
+
+.checkbox {
+  margin-right: 5px;
+}
+
+.payment form {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 15px;
+}
+
+.payment input,
+.payment select {
+  height: 45px;
+  border: 1px solid var(--color-gray);
+  background-color: white;
+  margin-right: 25px;
+  padding: 0 15px;
+  flex-grow: 1;
+}
+
+.payment ::placeholder {
+  color: var(--color-gray);
+}
+
+.payment form > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
