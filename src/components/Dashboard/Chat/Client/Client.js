@@ -54,7 +54,7 @@ const Client = (userFirstName, userLastName) => {
     });
   }, []);
   if (load) {
-    return <div>{/* <MDSpinner /> */}</div>;
+    return;
   }
   return <div className="App"></div>;
 };

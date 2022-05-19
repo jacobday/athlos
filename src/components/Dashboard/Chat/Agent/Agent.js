@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import MDSpinner from "react-md-spinner";
 
 const Agent = () => {
   const [loading, setLoading] = useState(true);
@@ -39,7 +38,7 @@ const Agent = () => {
     );
   }, []);
   if (loading) {
-    return <div>{/* <MDSpinner /> */}</div>;
+    return;
   }
   return <div id="cometchat" style={{ margin: "0 auto", width: "60%" }} />;
 };
