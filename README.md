@@ -10,5 +10,3 @@ CSCI-P465/565 Software Engineering for Information Systems I & Software Engineer
 | Jacob Day                     | day6@iu.edu     |
 | Sri Harsha Vardhan Pratipatti | srpratti@iu.edu |
 | Vaibhav Vishwanath            | vavish@iu.edu   |
-
-## Project Description
