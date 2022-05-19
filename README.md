@@ -1,9 +1,22 @@
-# Athlos Booking Management ![Latest Release](https://badgen.net/github/release/jacobday/athlos) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![Athlos Banner](https://imgur.com/L6LjUZB.jpg)
 
-Group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I)
+<h2 align="center">Athlos Booking Management</h2>
 
+<div align="center">
+  
+<p>Group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I)</p>
+  
+  <a href="https://github.com/jacobday/athlos/releases/latest">
+    <img alt="latest release" src="https://badgen.net/github/release/jacobday/athlos">
+  </a>
+  
+  <a href="https://github.com/prettier/prettier">
+    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+  </a>
+  
+</div>
 
-### Team Members
+## Team Members
 
 | Name                          | Email           |
 | ----------------------------- | --------------- |
