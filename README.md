@@ -3,7 +3,7 @@
 Group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I)
 
 
-## Team Members
+### Team Members
 
 | Name                          | Email           |
 | ----------------------------- | --------------- |
