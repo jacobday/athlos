@@ -10,6 +10,7 @@ on:
     branches: [ main ]
     
 env:
+  CI: false
   REACT_APP_LOCAL_URL: ${{ secrets.REACT_APP_LOCAL_URL }}
   REACT_APP_PRODUCTION_URL: ${{ secrets.REACT_APP_PRODUCTION_URL }}
   REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
