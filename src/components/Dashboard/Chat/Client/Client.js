@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import MDSpinner from "react-md-spinner";
 
 const Client = (userFirstName, userLastName) => {
   const [load, setLoad] = useState(true);

@@ -41,8 +41,6 @@ class EditCard extends Component {
   render() {
     const {
       props: {
-        facilityID,
-        uniqFacId,
         facilityName,
         facilityLocation,
         facilitySport,
