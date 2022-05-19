@@ -1,4 +1,5 @@
-# Athlos Booking Management
+# Athlos Booking Management ![Latest Release](https://badgen.net/github/release/jacobday/athlos)
+
 Group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I)
 
 
