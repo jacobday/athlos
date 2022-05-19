@@ -1,9 +1,14 @@
-<h1> Software Engineering Project </h1>
+# Athlos Booking Management
+CSCI-P465/565 Software Engineering for Information Systems I & Software Engineering I
 
-<h3>Team Members </h3> 
-Vedant Benadikar : vbenadik@iu.edu <br/>
-Jacob Day : day6@iu.edu <br/>
-Sri Harsha Vardhan Pratipatti : srpratti@iu.edu <br/>
-Vaibhav Vishwanath : vavish@iu.edu
 
-<h4> Project Description </h4>
+## Team Members
+
+| Name                          | Email           |
+| ----------------------------- | --------------- |
+| Vedant Benadikar              | vbenadik@iu.edu |
+| Jacob Day                     | day6@iu.edu     |
+| Sri Harsha Vardhan Pratipatti | srpratti@iu.edu |
+| Vaibhav Vishwanath            | vavish@iu.edu   |
+
+## Project Description
