@@ -48,7 +48,7 @@ class PaymentModal extends Component {
   onUpdatePayment = (e) => {
     var id = this.state.cardIdSelected;
     //console.log(id)
-    
+
     axios({
       method: "PUT",
       url: api_url + "/payment/update/" + id,
