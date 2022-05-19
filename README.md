@@ -1,5 +1,5 @@
 # Athlos Booking Management
-CSCI-P465/565 Software Engineering for Information Systems I & Software Engineering I
+Group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I)
 
 
 ## Team Members
