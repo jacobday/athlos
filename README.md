@@ -79,3 +79,5 @@ Versions <= 0.5.0 of Athlos were created as part of a group project for CSCI-P46
 | Jacob Day                     | day6@iu.edu     |
 | Sri Harsha Vardhan Pratipatti | srpratti@iu.edu |
 | Vaibhav Vishwanath            | vavish@iu.edu   |
+
+&copy; 2022 Vedant Benadikar, Jacob Day, Sri Harsha Vardhan Pratipatti, Vaibhav Vishwanath | All rights reserved
