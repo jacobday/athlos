@@ -29,6 +29,10 @@
 | Sri Harsha Vardhan Pratipatti | srpratti@iu.edu |
 | Vaibhav Vishwanath            | vavish@iu.edu   |
 
-## Video Demo
+## Demo
 
 [![Athlos Demo Video](https://i.imgur.com/sFgWRsh.png)](https://www.youtube.com/watch?v=CGNq9niOS1I "Athlos Demo Video")
+
+## Elevator Pitch
+
+[![Athlos Elevator Pitch](https://i.imgur.com/sFgWRsh.png)](https://www.youtube.com/watch?v=CGNq9niOS1I "Athlos Elevator Pitch")
