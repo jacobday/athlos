@@ -24,3 +24,27 @@ export const fetchPromotions = async () => {
     return [];
   }
 };
+
+export const fetchMyBookings = async () => {
+  try {
+    return await axios.post(`${api_url}/book/userbookings`, {
+      data: {
+        email: "this.props.userEmail",
+      },
+    });
+  } catch (e) {
+    return "";
+  }
+};
+
+export const fetchInterests = async () => {
+  try {
+    return await axios.post(`${api_url}/interests/userinterests`, {
+      data: {
+        email: "this.props.userEmail",
+      },
+    });
+  } catch (e) {
+    return "";
+  }
+};
