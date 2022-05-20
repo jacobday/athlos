@@ -5,7 +5,8 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - "**"
   pull_request:
     branches: [ main ]
     
@@ -39,3 +40,4 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
+    - run: npm test
