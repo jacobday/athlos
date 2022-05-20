@@ -177,7 +177,7 @@ class Dashboard extends Component {
     var tempPromoData = [];
 
     axios({
-      method: "Get",
+      method: "GET",
       headers: {
         "Access-Control-Allow-Origin": api_url,
       },
