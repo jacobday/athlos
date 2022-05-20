@@ -22,10 +22,10 @@
   
   
   <div>
-    <a href="features">Features</a> •
-    <a href="customer-demo">Customer Demo</a> •
-    <a href="elevator-pitch">Elevator Pitch</a> •
-    <a href="team-members">Team Members</a>
+    <a href="#features">Features</a> •
+    <a href="#customer-demo">Customer Demo</a> •
+    <a href="#elevator-pitch">Elevator Pitch</a> •
+    <a href="#team-members">Team Members</a>
   </div>
   
 </div>
