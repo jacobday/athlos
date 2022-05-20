@@ -4,7 +4,7 @@
 
 <div align="center">
   
-<h4>Group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I)</h4>
+<h4>Reserve your favorite sports facilities, hire personal trainers, and enlist game officials to oversee your next match.</h4>
   
   <p>
   <a href="https://github.com/jacobday/athlos/actions/workflows/node.js.yml">
@@ -24,21 +24,54 @@
   <div>
     <a href="#features">Features</a> •
     <a href="#customer-demo">Customer Demo</a> •
-    <a href="#elevator-pitch">Elevator Pitch</a> •
-    <a href="#team-members">Team Members</a>
+    <a href="#credits">Credits</a>
   </div>
   
 </div>
 
 ## Features
 
-- lorem
+### Core Features
+- Login & Sign-Up
+  - Secure login and sign-up validation
+  - Google sign-in integration
+- Search & Filtering
+  - Search by location or facility name
+  - Filter by sport 
+- Booking & Payments
+  - Booking cancelation, refunds, and feedback
+  - Equipment rental
+  - Hire referees and trainers
+  - QR code for check-in
+  - Credit card payment
+  - PayPal integration
+  - Apply promotions and reward points
+- User Profile & Dashboard
+  - Update payment details
+  - Select interests and receive booking suggestions
+  - View account name, email, and earned reward points
+  - Management visualizations for sales, profit, losses, expenses, and turnover
+  - Customer visualization for most-booked sports
+- Chat Support
+  - Live chat with customer support
+  - View user status (online/offline) and message status (delivered, read, typing)  
+
+### Additional Features
+- Google Map Integration
+- Suggestions & Subscriptions
+- Accessibility
+  - Voice search
+  - Reduced motion support
 
 ## Customer Demo
 
 [![Athlos Demo Video](https://i.imgur.com/KsqPxOV.png)](https://www.youtube.com/watch?v=CGNq9niOS1I "Athlos Demo Video")
 
-## Team Members
+## Credits
+
+Versions <= 0.5.0 of Athlos were created as part of a group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I).  Development was distributed into 5 two-week sprints utilizing Agile development models.
+
+### Team Members
 
 | Name                          | Email           |
 | ----------------------------- | --------------- |
