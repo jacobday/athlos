@@ -53,9 +53,6 @@ const Client = (userFirstName, userLastName) => {
       }
     });
   }, []);
-  if (load) {
-    return;
-  }
   return <div className="App"></div>;
 };
 export default Client;
