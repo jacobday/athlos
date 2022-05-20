@@ -11,7 +11,30 @@ if (process.env.NODE_ENV === "production") {
 
 export const fetchFacilities = async () => {
   try {
-    return await axios.get(`${api_url}/facilities`);
+    var result = [];
+
+    await axios.get(`${api_url}/facilities`).then((res) => {
+      for (let fac of res.data) {
+        const facData = {
+          uniqFacId: fac.facilityId,
+          facilityName: fac.facilityName,
+          facilityLocation: (
+            fac.facilityLocation.city +
+            "," +
+            fac.facilityLocation.state
+          ).trim(),
+          facilitySport: fac.facilitySports,
+          facilityInfo: fac.facilityInformation,
+          availableNow: false,
+          reservationPeriodStart: parseInt(fac.reservationPeriodStart),
+          reservationPeriodEnd: parseInt(fac.reservationPeriodEnd),
+          latitude: fac.latitude,
+          longitude: fac.longitude,
+        };
+        result.push(facData);
+      }
+    });
+    return result;
   } catch (e) {
     return [];
   }

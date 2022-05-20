@@ -1,11 +1,10 @@
 import axios from "axios";
-
 import {
   api_url,
   fetchFacilities,
   fetchMyBookings,
   fetchPromotions,
-} from "./utils";
+} from "../data";
 
 jest.mock("axios");
 
@@ -14,17 +13,59 @@ describe("Fetch data:", () => {
   describe("when fetch facilities is successful", () => {
     it("should return facilities array", async () => {
       // given
-      const facilities = [
+      const facilities = {
+        data: [
+          {
+            facilityId: 1,
+            facilityName: "Student Recreational Sports Center",
+            facilityLocation: {
+              place_id: "ChIJtxjOXrpmbIgRzbikOxbr4-0",
+              city: "Bloomington",
+              state: "IN",
+              country: "USA",
+              street:
+                "Student Recreational Sports Center (SRSC), East Law Lane",
+            },
+            latitude: 39.1734,
+            longitude: -86.5123139,
+            facilitySports: "Soccer",
+            facilityInformation: "Soccer Field A",
+            availableNow: false,
+            reservationPeriodStart: 13,
+            reservationPeriodEnd: 18,
+          },
+          {
+            facilityId: 2,
+            facilityName: "UCLA REC",
+            facilityLocation: {
+              place_id: "ChIJOz-HLIm8woARBQSw84j-Rb8",
+              city: "Los Angeles",
+              state: "CA",
+              country: "USA",
+              street: "UCLA REC, Westwood Plaza",
+            },
+            latitude: 34.071564,
+            longitude: -118.44534,
+            facilitySports: "Volleyball",
+            facilityInformation: "Volleyball Court #02",
+            availableNow: false,
+            reservationPeriodStart: 8,
+            reservationPeriodEnd: 13,
+          },
+        ],
+      };
+
+      axios.get.mockResolvedValueOnce(facilities);
+
+      // when
+      const result = await fetchFacilities();
+
+      // then
+      const expectedFacilities = [
         {
           uniqFacId: 1,
           facilityName: "Student Recreational Sports Center",
-          facilityLocation: {
-            place_id: "ChIJtxjOXrpmbIgRzbikOxbr4-0",
-            city: "Bloomington",
-            state: "IN",
-            country: "USA",
-            street: "Student Recreational Sports Center (SRSC), East Law Lane",
-          },
+          facilityLocation: "Bloomington,IN",
           latitude: 39.1734,
           longitude: -86.5123139,
           facilitySport: "Soccer",
@@ -36,13 +77,7 @@ describe("Fetch data:", () => {
         {
           uniqFacId: 2,
           facilityName: "UCLA REC",
-          facilityLocation: {
-            place_id: "ChIJOz-HLIm8woARBQSw84j-Rb8",
-            city: "Los Angeles",
-            state: "CA",
-            country: "USA",
-            street: "UCLA REC, Westwood Plaza",
-          },
+          facilityLocation: "Los Angeles,CA",
           latitude: 34.071564,
           longitude: -118.44534,
           facilitySport: "Volleyball",
@@ -53,14 +88,8 @@ describe("Fetch data:", () => {
         },
       ];
 
-      axios.get.mockResolvedValueOnce(facilities);
-
-      // when
-      const result = await fetchFacilities();
-
-      // then
       expect(axios.get).toHaveBeenCalledWith(`${api_url}/facilities`);
-      expect(result).toEqual(facilities);
+      expect(result).toEqual(expectedFacilities);
     });
   });
 

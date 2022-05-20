@@ -12,6 +12,7 @@ import axios from "axios";
 import Visualization from "./Visualization/Visualization";
 import MyBookCard from "./MyBookCard/MyBookCard";
 import Chat from "./Chat/Chat";
+import { fetchFacilities } from "../../data/data";
 
 const { REACT_APP_LOCAL_URL, REACT_APP_PRODUCTION_URL } = process.env;
 
@@ -75,61 +76,9 @@ class Dashboard extends Component {
     this.getPromotions();
   }
 
-  getFacilities() {
-    var tempFacData = [];
-
-    // Get Facilities from API
-    axios({
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": api_url,
-      },
-      url: api_url + "/facilities/",
-    })
-      .then((res) => {
-        if (res.status === 200 || res.status === 304) {
-          let counter = 1;
-
-          for (let temp of res.data) {
-            const facData = {
-              id: counter,
-              uniqFacId: temp.facilityId,
-              facilityName: temp.facilityName,
-              facilityLocation: (
-                temp.facilityLocation.city +
-                "," +
-                temp.facilityLocation.state
-              ).trim(),
-              facilitySport: temp.facilitySports,
-              facilityInfo: temp.facilityInformation,
-              availableNow: false,
-              reservationPeriodStart: parseInt(temp.reservationPeriodStart),
-              reservationPeriodEnd: parseInt(temp.reservationPeriodEnd),
-              latitude: temp.latitude,
-              longitude: temp.longitude,
-            };
-            counter = counter + 1;
-            tempFacData.push(facData);
-          }
-        }
-        this.setState((prevState) => ({
-          facilityData: tempFacData,
-        }));
-      })
-      .catch(function (err) {
-        console.log(err);
-        if (err.response) {
-          if (err.response.status === 404) {
-            console.log("Couldn't retrieve facilities");
-          }
-        } else if (err.request) {
-          //Response not received from API
-          console.log("Error: ", err.request);
-        } else {
-          //Unexpected Error
-          console.log("Error", err.message);
-        }
-      });
+  async getFacilities() {
+    const result = await fetchFacilities();
+    this.setState({ facilityData: result });
   }
 
   getMyBookings() {
