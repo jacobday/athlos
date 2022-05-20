@@ -31,9 +31,11 @@ export const fetchFacilities = async () => {
           latitude: fac.latitude,
           longitude: fac.longitude,
         };
+
         result.push(facData);
       }
     });
+
     return result;
   } catch (e) {
     return [];
@@ -42,7 +44,25 @@ export const fetchFacilities = async () => {
 
 export const fetchPromotions = async () => {
   try {
-    return await axios.get(`${api_url}/promotion/promos`);
+    var result = [];
+
+    await axios.get(`${api_url}/promotion/promos`).then((res) => {
+      for (let promo of res.data) {
+        const promoData = {
+          id: promo._id,
+          promotionCode: promo.promotionCode,
+          promotionEnd: promo.promotionEnd,
+          promotionInfo: promo.promotionInfo,
+          promotionName: promo.promotionName,
+          promotionPercentage: promo.promotionPercentage,
+          promotionStart: promo.promotionStart,
+        };
+
+        result.push(promoData);
+      }
+    });
+
+    return result;
   } catch (e) {
     return [];
   }

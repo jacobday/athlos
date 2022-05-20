@@ -12,7 +12,7 @@ import axios from "axios";
 import Visualization from "./Visualization/Visualization";
 import MyBookCard from "./MyBookCard/MyBookCard";
 import Chat from "./Chat/Chat";
-import { fetchFacilities } from "../../data/data";
+import { fetchFacilities, fetchPromotions } from "../../data";
 
 const { REACT_APP_LOCAL_URL, REACT_APP_PRODUCTION_URL } = process.env;
 
@@ -65,6 +65,7 @@ class Dashboard extends Component {
     this.getMyBookings();
     this.getFacilities();
     this.getPromotions();
+
     this.props.handleRefresh();
   };
 
@@ -122,35 +123,9 @@ class Dashboard extends Component {
     });
   }
 
-  getPromotions() {
-    var tempPromoData = [];
-
-    axios({
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": api_url,
-      },
-      url: api_url + "/promotion/promos",
-    }).then((res) => {
-      if (res.status === 200 || res.status === 304) {
-        for (let temp of res.data) {
-          const promoData = {
-            id: temp._id,
-            promotionCode: temp.promotionCode,
-            promotionEnd: temp.promotionEnd,
-            promotionInfo: temp.promotionInfo,
-            promotionName: temp.promotionName,
-            promotionPercentage: temp.promotionPercentage,
-            promotionStart: temp.promotionStart,
-          };
-
-          tempPromoData.push(promoData);
-        }
-      }
-      this.setState((prevState) => ({
-        promotionData: tempPromoData,
-      }));
-    });
+  async getPromotions() {
+    const result = await fetchPromotions();
+    this.setState({ promotionData: result });
   }
 
   render() {

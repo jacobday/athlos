@@ -112,7 +112,36 @@ describe("Fetch data:", () => {
   describe("when fetch promotions is successful", () => {
     it("should return promotions array", async () => {
       // given
-      const promotions = [
+      const promotions = {
+        data: [
+          {
+            _id: 1,
+            promotionName: "Athlos Test",
+            promotionCode: "TEST",
+            promotionStart: "2022-01-01",
+            promotionEnd: "2024-04-30",
+            promotionPercentage: 0,
+            promotionInfo: "Receive 0% off.",
+          },
+          {
+            _id: 2,
+            promotionName: "5% Off",
+            promotionCode: "TEST05",
+            promotionStart: "2022-01-31",
+            promotionEnd: "2022-12-31",
+            promotionPercentage: 0.05,
+            promotionInfo: "Enjoy 5% off your next reservation.",
+          },
+        ],
+      };
+
+      axios.get.mockResolvedValueOnce(promotions);
+
+      // when
+      const result = await fetchPromotions();
+
+      // then
+      const expectedPromotions = [
         {
           id: 1,
           promotionName: "Athlos Test",
@@ -133,14 +162,8 @@ describe("Fetch data:", () => {
         },
       ];
 
-      axios.get.mockResolvedValueOnce(promotions);
-
-      // when
-      const result = await fetchPromotions();
-
-      // then
       expect(axios.get).toHaveBeenCalledWith(`${api_url}/promotion/promos`);
-      expect(result).toEqual(promotions);
+      expect(result).toEqual(expectedPromotions);
     });
   });
 
