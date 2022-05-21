@@ -103,11 +103,20 @@ export const fetchMyBookings = async (userEmail) => {
   }
 };
 
-export const fetchInterests = async () => {
+export const fetchInterests = async (userEmail) => {
   try {
-    return await axios.post(`${api_url}/interests/userinterests`, {
-      email: JSON.parse(localStorage.getItem("user")).email,
-    });
+    var result = [];
+
+    await axios
+      .post(`${api_url}/interests/userinterests`, {
+        email: userEmail,
+      })
+      .then((res) => {
+        console.log(res);
+        result = res.data[0].interest;
+      });
+
+    return result;
   } catch (e) {
     return [];
   }

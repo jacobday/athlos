@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   api_url,
   fetchFacilities,
+  fetchInterests,
   fetchMyBookings,
   fetchPromotions,
 } from "../data";
@@ -341,6 +342,49 @@ describe("Fetch data:", () => {
       expect(axios.post).toHaveBeenCalledWith(`${api_url}/book/userbookings`, {
         email: "test@athlos.com",
       });
+      expect(result).toEqual([]);
+    });
+  });
+
+  // Interest Data
+  describe("when fetch interests is successful", () => {
+    it("should return interests array", async () => {
+      // given
+      const interests = {
+        data: [{ interest: ["Soccer", "Football", "Baseball"] }],
+      };
+      axios.post.mockResolvedValueOnce(interests);
+
+      // when
+      const result = await fetchInterests("test@athlos.com");
+
+      // then
+      expect(axios.post).toHaveBeenCalledWith(
+        `${api_url}/interests/userinterests`,
+        {
+          email: "test@athlos.com",
+        }
+      );
+      expect(result).toEqual(interests.data[0].interest);
+    });
+  });
+
+  describe("when fetch interests fails", () => {
+    it("should return empty string", async () => {
+      // given
+      const message = "Network Error";
+      axios.post.mockRejectedValueOnce(new Error(message));
+
+      // when
+      const result = await fetchInterests("test@athlos.com");
+
+      // then
+      expect(axios.post).toHaveBeenCalledWith(
+        `${api_url}/interests/userinterests`,
+        {
+          email: "test@athlos.com",
+        }
+      );
       expect(result).toEqual([]);
     });
   });
