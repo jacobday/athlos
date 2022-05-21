@@ -12,7 +12,7 @@ import axios from "axios";
 import Visualization from "./Visualization/Visualization";
 import MyBookCard from "./MyBookCard/MyBookCard";
 import Chat from "./Chat/Chat";
-import { fetchFacilities, fetchPromotions } from "../../data";
+import { fetchFacilities, fetchMyBookings, fetchPromotions } from "../../data";
 
 const { REACT_APP_LOCAL_URL, REACT_APP_PRODUCTION_URL } = process.env;
 
@@ -82,45 +82,9 @@ class Dashboard extends Component {
     this.setState({ facilityData: result });
   }
 
-  getMyBookings() {
-    var tempBookData = [];
-
-    axios({
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": api_url,
-      },
-      url: api_url + "/book/userbookings",
-      data: {
-        email: this.props.userEmail,
-      },
-    }).then((res) => {
-      if (res.status === 200 || res.status === 304) {
-        let counter = 1;
-        for (let temp of res.data) {
-          const bookData = {
-            id: counter,
-            uniqBookingId: temp._id,
-            gear: temp.gear,
-            upgrade: temp.upgrade,
-            intime: temp.intime,
-            outtime: temp.outtime,
-            facilityLocation: temp.facility_info.facilityLocation,
-            latitude: temp.facility_info.latitude,
-            longitude: temp.facility_info.longitude,
-            facilitySport: temp.facility_info.facilitySports,
-            facilityName: temp.facility_info.facilityName,
-            facilityInfo: temp.facility_info.facilityInformation,
-            totalAmount: temp.totalAmount,
-          };
-          counter = counter + 1;
-          tempBookData.push(bookData);
-        }
-      }
-      this.setState((prevState) => ({
-        myBookData: tempBookData,
-      }));
-    });
+  async getMyBookings() {
+    const result = await fetchMyBookings(this.props.userEmail);
+    this.setState({ myBookData: result });
   }
 
   async getPromotions() {

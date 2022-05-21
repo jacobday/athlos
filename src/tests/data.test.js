@@ -186,10 +186,84 @@ describe("Fetch data:", () => {
   describe("when fetch my bookings is successful", () => {
     it("should return my bookings array", async () => {
       // given
-      const bookings = [
+      const bookings = {
+        data: [
+          {
+            _id: 1,
+            facility_info: {
+              facilityName: "Student Recreational Sports Center",
+              facilityLocation: {
+                place_id: "ChIJtxjOXrpmbIgRzbikOxbr4-0",
+                city: "Bloomington",
+                state: "IN",
+                country: "USA",
+                street:
+                  "Student Recreational Sports Center (SRSC), East Law Lane",
+              },
+              facilitySports: "Soccer",
+              facilityInformation: "Soccer Field A",
+              latitude: 39.1734,
+              longitude: -86.5123139,
+            },
+            intime: 11,
+            outtime: 12,
+            totalAmount: 40.56,
+            gear: [
+              {
+                id: 1,
+                itemName: "Soccer Ball",
+                itemPrice: 1.75,
+                maxItems: 5,
+                sportType: "Soccer",
+                value: 1,
+              },
+            ],
+            upgrade: [
+              {
+                id: 2,
+                itemName: "Trainer",
+                itemPrice: 40,
+                maxItems: 1,
+                value: 1,
+              },
+            ],
+          },
+          {
+            _id: 2,
+            facility_info: {
+              facilityName: "UCLA REC",
+              facilityLocation: {
+                place_id: "ChIJOz-HLIm8woARBQSw84j-Rb8",
+                city: "Los Angeles",
+                state: "CA",
+                country: "USA",
+                street: "UCLA REC, Westwood Plaza",
+              },
+              latitude: 34.071564,
+              longitude: -118.44534,
+              facilitySports: "Volleyball",
+              facilityInformation: "Volleyball Court 02B",
+            },
+            intime: 14,
+            outtime: 15,
+            totalAmount: 0,
+            gear: [],
+            upgrade: [],
+          },
+        ],
+      };
+
+      axios.post.mockResolvedValueOnce(bookings);
+
+      // when
+      const result = await fetchMyBookings("test@athlos.com");
+
+      // then
+      const expectedBookings = [
         {
           uniqBookingId: 1,
           facilityName: "Student Recreational Sports Center",
+
           facilityLocation: {
             place_id: "ChIJtxjOXrpmbIgRzbikOxbr4-0",
             city: "Bloomington",
@@ -197,10 +271,11 @@ describe("Fetch data:", () => {
             country: "USA",
             street: "Student Recreational Sports Center (SRSC), East Law Lane",
           },
-          latitude: 39.1734,
-          longitude: -86.5123139,
           facilitySport: "Soccer",
           facilityInfo: "Soccer Field A",
+          latitude: 39.1734,
+          longitude: -86.5123139,
+
           intime: 11,
           outtime: 12,
           totalAmount: 40.56,
@@ -246,18 +321,10 @@ describe("Fetch data:", () => {
         },
       ];
 
-      axios.post.mockResolvedValueOnce(bookings);
-
-      // when
-      const result = await fetchMyBookings();
-
-      // then
       expect(axios.post).toHaveBeenCalledWith(`${api_url}/book/userbookings`, {
-        data: {
-          email: "this.props.userEmail",
-        },
+        email: "test@athlos.com",
       });
-      expect(result).toEqual(bookings);
+      expect(result).toEqual(expectedBookings);
     });
   });
 
@@ -268,15 +335,13 @@ describe("Fetch data:", () => {
       axios.post.mockRejectedValueOnce(new Error(message));
 
       // when
-      const result = await fetchMyBookings();
+      const result = await fetchMyBookings("test@athlos.com");
 
       // then
       expect(axios.post).toHaveBeenCalledWith(`${api_url}/book/userbookings`, {
-        data: {
-          email: "this.props.userEmail",
-        },
+        email: "test@athlos.com",
       });
-      expect(result).toEqual("");
+      expect(result).toEqual([]);
     });
   });
 });

@@ -68,26 +68,47 @@ export const fetchPromotions = async () => {
   }
 };
 
-export const fetchMyBookings = async () => {
+export const fetchMyBookings = async (userEmail) => {
   try {
-    return await axios.post(`${api_url}/book/userbookings`, {
-      data: {
-        email: "this.props.userEmail",
-      },
-    });
+    var result = [];
+
+    await axios
+      .post(`${api_url}/book/userbookings`, {
+        email: userEmail,
+      })
+      .then((res) => {
+        for (let booking of res.data) {
+          const bookingData = {
+            uniqBookingId: booking._id,
+            gear: booking.gear,
+            upgrade: booking.upgrade,
+            intime: booking.intime,
+            outtime: booking.outtime,
+            facilityLocation: booking.facility_info.facilityLocation,
+            latitude: booking.facility_info.latitude,
+            longitude: booking.facility_info.longitude,
+            facilitySport: booking.facility_info.facilitySports,
+            facilityName: booking.facility_info.facilityName,
+            facilityInfo: booking.facility_info.facilityInformation,
+            totalAmount: booking.totalAmount,
+          };
+
+          result.push(bookingData);
+        }
+      });
+
+    return result;
   } catch (e) {
-    return "";
+    return [];
   }
 };
 
 export const fetchInterests = async () => {
   try {
     return await axios.post(`${api_url}/interests/userinterests`, {
-      data: {
-        email: "this.props.userEmail",
-      },
+      email: JSON.parse(localStorage.getItem("user")).email,
     });
   } catch (e) {
-    return "";
+    return [];
   }
 };
