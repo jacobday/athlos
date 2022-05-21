@@ -65,7 +65,7 @@
   - Voice search
   - Reduced motion support
 
-## Customer Demo
+## Customer Demo (v0.5.0)
 
 [![Athlos Demo Video](https://i.imgur.com/KsqPxOV.png)](https://www.youtube.com/watch?v=CGNq9niOS1I "Athlos Demo Video")
 
