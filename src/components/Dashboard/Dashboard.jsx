@@ -8,20 +8,10 @@ import AddCard from "./AddCard/AddCard";
 import Searchbar from "./Searchbar/Searchbar";
 import ErrorCard from "./ErrorCard/ErrorCard";
 import uniqid from "uniqid";
-import axios from "axios";
 import Visualization from "./Visualization/Visualization";
 import MyBookCard from "./MyBookCard/MyBookCard";
 import Chat from "./Chat/Chat";
 import { fetchFacilities, fetchMyBookings, fetchPromotions } from "../../data";
-
-const { REACT_APP_LOCAL_URL, REACT_APP_PRODUCTION_URL } = process.env;
-
-var api_url;
-if (process.env.NODE_ENV === "production") {
-  api_url = REACT_APP_PRODUCTION_URL;
-} else {
-  api_url = REACT_APP_LOCAL_URL;
-}
 
 class Dashboard extends Component {
   constructor(props) {
