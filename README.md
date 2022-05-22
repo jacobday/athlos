@@ -71,7 +71,7 @@
 
 ## Credits
 
-Versions <= 0.5.0 of Athlos were created as part of a group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I). Development was distributed into 5 two-week sprints utilizing Agile development models.
+Versions $\leq$ 0.5.0 of Athlos were created as part of a group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I). Development was distributed into 5 two-week sprints utilizing Agile development models.
 
 ### Team Members
 
