@@ -8,4 +8,5 @@ export {
   fetchInterests,
   fetchMyBookings,
   fetchPromotions,
+  fetchPayMethods,
 } from "./data";
