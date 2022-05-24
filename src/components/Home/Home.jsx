@@ -18,6 +18,10 @@ class Home extends Component {
     window.addEventListener("scroll", this.scrollAnimation);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.scrollAnimation);
+  }
+
   scrollAnimation = () => {
     let scrollPosition = window.scrollY;
 
