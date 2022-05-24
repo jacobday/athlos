@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 const {
   REACT_APP_CHAT_APP_ID,
-  REACT_APP_CHAT_API_KEY,
+  REACT_APP_CHAT_AUTH_KEY,
   REACT_APP_CHAT_WIDGET_ID,
   REACT_APP_AGENT_ID,
 } = process.env;
@@ -14,7 +14,7 @@ const Client = (userFirstName, userLastName) => {
     window.CometChatWidget.init({
       appID: REACT_APP_CHAT_APP_ID,
       appRegion: "us",
-      authKey: REACT_APP_CHAT_API_KEY,
+      authKey: REACT_APP_CHAT_AUTH_KEY,
     }).then((response) => {
       //You can now call login function.
       let uid = localStorage.getItem("cc-uid");
@@ -36,7 +36,7 @@ const Client = (userFirstName, userLastName) => {
               docked: "true",
               height: "300px",
               width: "400px",
-              defaultID: REACT_APP_AGENT_ID,
+              defaultID: "guest",
               defaultType: "user", //user or group
             });
             setLoad(false);
@@ -52,7 +52,7 @@ const Client = (userFirstName, userLastName) => {
             docked: "true",
             height: "300px",
             width: "400px",
-            defaultID: REACT_APP_AGENT_ID,
+            defaultID: "guest",
             defaultType: "user", //user or group
           });
           setLoad(false);
