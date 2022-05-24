@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./PaymentModal.module.css";
 import InputMask from "react-input-mask";
 import axios from "axios";
+import { fetchPayMethods } from "../../../../../data/data";
 const { REACT_APP_LOCAL_URL, REACT_APP_PRODUCTION_URL } = process.env;
 
 var api_url;
@@ -18,31 +19,14 @@ class PaymentModal extends Component {
       cardIdSelected: "",
     };
   }
+
+  async getPayMethods() {
+    const result = await fetchPayMethods(this.props.userEmail);
+    this.setState({ paymentData: result });
+  }
+
   componentDidMount() {
-    let payData = [];
-    axios({
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": api_url,
-      },
-      url: api_url + "/payment/getpaymethod",
-      data: {
-        email: this.props.userEmail,
-      },
-    })
-      .then((res) => {
-        if (res.status === 200 || res.status === 304) {
-          for (let payment of res.data) {
-            payData.push(payment);
-          }
-        }
-        this.setState((prevState) => ({
-          paymentData: payData,
-        }));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.getPayMethods();
   }
 
   onUpdatePayment = (e) => {

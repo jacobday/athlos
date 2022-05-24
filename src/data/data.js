@@ -120,3 +120,23 @@ export const fetchInterests = async (userEmail) => {
     return [];
   }
 };
+
+export const fetchPayMethods = async (userEmail) => {
+  try {
+    var result = [];
+
+    await axios
+      .post(`${api_url}/payment/getpaymethod`, {
+        email: userEmail,
+      })
+      .then((res) => {
+        for (let method of res.data) {
+          result.push(method);
+        }
+      });
+
+    return result;
+  } catch (e) {
+    return [];
+  }
+};
