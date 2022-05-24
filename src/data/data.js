@@ -112,7 +112,6 @@ export const fetchInterests = async (userEmail) => {
         email: userEmail,
       })
       .then((res) => {
-        console.log(res);
         result = res.data[0].interest;
       });
 
