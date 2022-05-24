@@ -430,77 +430,19 @@ describe("Fetch data:", () => {
           },
         ],
       };
-
-      const methods2 = {
-        data: [
-          {
-            _id: 5,
-            userEmail: "test2@athlos.com",
-            cardHolderName: "Athlos Test2",
-            cardNumber: "1111 1111 1111 1111",
-            cvv: "222",
-            cardExpiry: "10/28",
-            billingLocation: {
-              city: "Bloomington",
-              state: "IN",
-              country: "United States",
-              streetAddress: "222 N. Rose Ave",
-              streetAddress2: "Willkie North 512A",
-              zipcode: 47405,
-            },
-          },
-        ],
-      };
-
       axios.post.mockResolvedValueOnce(methods);
 
       // when
       const result = await fetchPayMethods("test@athlos.com");
-      console.log(result);
 
       // then
-      const expectedMethods = [
-        {
-          _id: 1,
-          userEmail: "test@athlos.com",
-          cardHolderName: "Athlos Test",
-          cardNumber: "0000 0000 0000 0000",
-          cvv: "111",
-          cardExpiry: "11/24",
-          billingLocation: {
-            city: "Bloomington",
-            state: "IN",
-            country: "United States",
-            streetAddress: "111 N. Rose Ave",
-            streetAddress2: "Willkie North 714B",
-            zipcode: 47406,
-          },
-        },
-        {
-          _id: 2,
-          userEmail: "test2@athlos.com",
-          cardHolderName: "Athlos Test2",
-          cardNumber: "1111 1111 1111 1111",
-          cvv: "222",
-          cardExpiry: "10/28",
-          billingLocation: {
-            city: "Bloomington",
-            state: "IN",
-            country: "United States",
-            streetAddress: "222 N. Rose Ave",
-            streetAddress2: "Willkie North 512A",
-            zipcode: 47405,
-          },
-        },
-      ];
-
       expect(axios.post).toHaveBeenCalledWith(
         `${api_url}/payment/getpaymethod`,
         {
           email: "test@athlos.com",
         }
       );
-      expect(result).toEqual(expectedMethods);
+      expect(result).toEqual(methods.data);
     });
   });
 
