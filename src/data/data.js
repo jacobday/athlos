@@ -140,3 +140,23 @@ export const fetchPayMethods = async (userEmail) => {
     return [];
   }
 };
+
+export const fetchReservedSlots = async () => {
+  try {
+    var result = {};
+
+    await axios.get(`${api_url}/book/booked_slots`).then((res) => {
+      for (let slot of res.data) {
+        if (result[slot.facilityID] === undefined) {
+          result[slot.facilityID] = [slot.intime];
+        } else {
+          result[slot.facilityID].push(slot.intime);
+        }
+      }
+    });
+
+    return result;
+  } catch (e) {
+    return {};
+  }
+};

@@ -9,4 +9,5 @@ export {
   fetchMyBookings,
   fetchPromotions,
   fetchPayMethods,
+  fetchReservedSlots,
 } from "./data";

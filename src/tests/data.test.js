@@ -6,6 +6,7 @@ import {
   fetchMyBookings,
   fetchPromotions,
   fetchPayMethods,
+  fetchReservedSlots,
 } from "../data";
 
 jest.mock("axios");
@@ -331,7 +332,7 @@ describe("Fetch data:", () => {
   });
 
   describe("when fetch my bookings fails", () => {
-    it("should return empty string", async () => {
+    it("should return empty array", async () => {
       // given
       const message = "Network Error";
       axios.post.mockRejectedValueOnce(new Error(message));
@@ -371,7 +372,7 @@ describe("Fetch data:", () => {
   });
 
   describe("when fetch interests fails", () => {
-    it("should return empty string", async () => {
+    it("should return empty array", async () => {
       // given
       const message = "Network Error";
       axios.post.mockRejectedValueOnce(new Error(message));
@@ -447,7 +448,7 @@ describe("Fetch data:", () => {
   });
 
   describe("when fetch pay methods fails", () => {
-    it("should return empty string", async () => {
+    it("should return empty array", async () => {
       // given
       const message = "Network Error";
       axios.post.mockRejectedValueOnce(new Error(message));
@@ -463,6 +464,45 @@ describe("Fetch data:", () => {
         }
       );
       expect(result).toEqual([]);
+    });
+  });
+
+  // Reserved Slots Data
+  describe("when fetch reserved slots is successful", () => {
+    it("should return reserved slots object", async () => {
+      // given
+      const reservedSlots = {
+        data: [
+          { _id: 1, facilityID: "f1", intime: 13, outtime: 14 },
+          { _id: 2, facilityID: "f2", intime: 14, outtime: 15 },
+        ],
+      };
+
+      axios.get.mockResolvedValueOnce(reservedSlots);
+
+      // when
+      const result = await fetchReservedSlots();
+
+      // then
+      const expectedSlots = { f1: [13], f2: [14] };
+
+      expect(axios.get).toHaveBeenCalledWith(`${api_url}/book/booked_slots`);
+      expect(result).toEqual(expectedSlots);
+    });
+  });
+
+  describe("when fetch reserved slots fails", () => {
+    it("should return empty object", async () => {
+      // given
+      const message = "Network Error";
+      axios.get.mockRejectedValueOnce(new Error(message));
+
+      // when
+      const result = await fetchReservedSlots();
+
+      // then
+      expect(axios.get).toHaveBeenCalledWith(`${api_url}/book/booked_slots`);
+      expect(result).toEqual({});
     });
   });
 });
