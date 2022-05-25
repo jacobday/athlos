@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { SupportedSports } from "../../../../../data";
+import { fetchInterests, SupportedSports } from "../../../../../data";
 import styles from "./InterestModal.module.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,48 +29,9 @@ class InterestModal extends Component {
     this.setState({ selectedInterests });
   }
 
-  getInterests() {
-    var api_url;
-    if (process.env.NODE_ENV === "production") {
-      api_url = REACT_APP_PRODUCTION_URL;
-    } else {
-      api_url = REACT_APP_LOCAL_URL;
-    }
-
-    axios({
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": api_url,
-      },
-      url: api_url + "/interests/userinterests",
-      data: {
-        email: this.props.userEmail,
-      },
-    })
-      .then((res) => {
-        var interest;
-
-        if (res.status === 200 || res.status === 304) {
-          interest = res.data[0].interest;
-        }
-        this.setState((prevState) => ({
-          selectedInterests: interest,
-        }));
-      })
-      .catch(function (err) {
-        console.log(err);
-        if (err.response) {
-          if (err.response.status === 404) {
-            console.log("Couldn't retrieve interests");
-          }
-        } else if (err.request) {
-          //Response not received from API
-          console.log("Error: ", err.request);
-        } else {
-          //Unexpected Error
-          console.log("Error", err.message);
-        }
-      });
+  async getInterests() {
+    const result = await fetchInterests(this.props.userEmail);
+    this.setState({ selectedInterests: result });
   }
 
   onSubmit = () => {

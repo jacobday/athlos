@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
+const {
+  REACT_APP_CHAT_APP_ID,
+  REACT_APP_CHAT_AUTH_KEY,
+  REACT_APP_CHAT_WIDGET_ID,
+} = process.env;
 
 const Agent = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     window.CometChatWidget.init({
-      appID: "2079391d99294330",
+      appID: REACT_APP_CHAT_APP_ID,
       appRegion: "us",
-      authKey: "7cf2425060750748696b231c31aec31d3ec06a17",
+      authKey: REACT_APP_CHAT_AUTH_KEY,
     }).then(
       (response) => {
         //You can now call login function.
@@ -15,7 +20,7 @@ const Agent = () => {
         }).then(
           (response) => {
             window.CometChatWidget.launch({
-              widgetID: "a4c01d3f-ebc4-48cf-a866-8e1b027073ef",
+              widgetID: REACT_APP_CHAT_WIDGET_ID,
               target: "#cometchat",
               roundedCorners: "true",
               height: "600px",

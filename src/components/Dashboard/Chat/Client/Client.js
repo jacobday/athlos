@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
+const {
+  REACT_APP_CHAT_APP_ID,
+  REACT_APP_CHAT_AUTH_KEY,
+  REACT_APP_CHAT_WIDGET_ID,
+  REACT_APP_AGENT_ID,
+} = process.env;
 
 const Client = (userFirstName, userLastName) => {
   const [load, setLoad] = useState(true);
+
   useEffect(() => {
     setLoad(true);
     window.CometChatWidget.init({
-      appID: "2079391d99294330",
+      appID: REACT_APP_CHAT_APP_ID,
       appRegion: "us",
-      authKey: "7cf2425060750748696b231c31aec31d3ec06a17",
+      authKey: REACT_APP_CHAT_AUTH_KEY,
     }).then((response) => {
       //You can now call login function.
       let uid = localStorage.getItem("cc-uid");
@@ -24,12 +31,12 @@ const Client = (userFirstName, userLastName) => {
             localStorage.setItem("cc-uid", loggedInUser.uid);
             // Proceed with launching your Chat Widget
             window.CometChatWidget.launch({
-              widgetID: "5d3d5c17-15b9-4ed8-8077-a6124967615d",
+              widgetID: REACT_APP_CHAT_WIDGET_ID,
               roundedCorners: "true",
               docked: "true",
               height: "300px",
               width: "400px",
-              defaultID: process.env.REACT_APP_AGENT_ID,
+              defaultID: "guest",
               defaultType: "user", //user or group
             });
             setLoad(false);
@@ -40,12 +47,12 @@ const Client = (userFirstName, userLastName) => {
           uid: uid,
         }).then((user) => {
           window.CometChatWidget.launch({
-            widgetID: "5d3d5c17-15b9-4ed8-8077-a6124967615d",
+            widgetID: REACT_APP_CHAT_WIDGET_ID,
             roundedCorners: "true",
             docked: "true",
             height: "300px",
             width: "400px",
-            defaultID: process.env.REACT_APP_AGENT_ID,
+            defaultID: "guest",
             defaultType: "user", //user or group
           });
           setLoad(false);
@@ -53,9 +60,6 @@ const Client = (userFirstName, userLastName) => {
       }
     });
   }, []);
-  if (load) {
-    return;
-  }
   return <div className="App"></div>;
 };
 export default Client;

@@ -8,19 +8,10 @@ import AddCard from "./AddCard/AddCard";
 import Searchbar from "./Searchbar/Searchbar";
 import ErrorCard from "./ErrorCard/ErrorCard";
 import uniqid from "uniqid";
-import axios from "axios";
 import Visualization from "./Visualization/Visualization";
 import MyBookCard from "./MyBookCard/MyBookCard";
 import Chat from "./Chat/Chat";
-
-const { REACT_APP_LOCAL_URL, REACT_APP_PRODUCTION_URL } = process.env;
-
-var api_url;
-if (process.env.NODE_ENV === "production") {
-  api_url = REACT_APP_PRODUCTION_URL;
-} else {
-  api_url = REACT_APP_LOCAL_URL;
-}
+import { fetchFacilities, fetchMyBookings, fetchPromotions } from "../../data";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -64,6 +55,7 @@ class Dashboard extends Component {
     this.getMyBookings();
     this.getFacilities();
     this.getPromotions();
+
     this.props.handleRefresh();
   };
 
@@ -75,133 +67,19 @@ class Dashboard extends Component {
     this.getPromotions();
   }
 
-  getFacilities() {
-    var tempFacData = [];
-
-    // Get Facilities from API
-    axios({
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": api_url,
-      },
-      url: api_url + "/facilities/",
-    })
-      .then((res) => {
-        if (res.status === 200 || res.status === 304) {
-          let counter = 1;
-
-          for (let temp of res.data) {
-            const facData = {
-              id: counter,
-              uniqFacId: temp.facilityId,
-              facilityName: temp.facilityName,
-              facilityLocation: (
-                temp.facilityLocation.city +
-                "," +
-                temp.facilityLocation.state
-              ).trim(),
-              facilitySport: temp.facilitySports,
-              facilityInfo: temp.facilityInformation,
-              availableNow: false,
-              reservationPeriodStart: parseInt(temp.reservationPeriodStart),
-              reservationPeriodEnd: parseInt(temp.reservationPeriodEnd),
-              latitude: temp.latitude,
-              longitude: temp.longitude,
-            };
-            counter = counter + 1;
-            tempFacData.push(facData);
-          }
-        }
-        this.setState((prevState) => ({
-          facilityData: tempFacData,
-        }));
-      })
-      .catch(function (err) {
-        console.log(err);
-        if (err.response) {
-          if (err.response.status === 404) {
-            console.log("Couldn't retrieve facilities");
-          }
-        } else if (err.request) {
-          //Response not received from API
-          console.log("Error: ", err.request);
-        } else {
-          //Unexpected Error
-          console.log("Error", err.message);
-        }
-      });
+  async getFacilities() {
+    const result = await fetchFacilities();
+    this.setState({ facilityData: result });
   }
 
-  getMyBookings() {
-    var tempBookData = [];
-
-    axios({
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": api_url,
-      },
-      url: api_url + "/book/userbookings",
-      data: {
-        email: this.props.userEmail,
-      },
-    }).then((res) => {
-      if (res.status === 200 || res.status === 304) {
-        let counter = 1;
-        for (let temp of res.data) {
-          const bookData = {
-            id: counter,
-            uniqBookingId: temp._id,
-            gear: temp.gear,
-            upgrade: temp.upgrade,
-            intime: temp.intime,
-            outtime: temp.outtime,
-            facilityLocation: temp.facility_info.facilityLocation,
-            latitude: temp.facility_info.latitude,
-            longitude: temp.facility_info.longitude,
-            facilitySport: temp.facility_info.facilitySports,
-            facilityName: temp.facility_info.facilityName,
-            facilityInfo: temp.facility_info.facilityInformation,
-            totalAmount: temp.totalAmount,
-          };
-          counter = counter + 1;
-          tempBookData.push(bookData);
-        }
-      }
-      this.setState((prevState) => ({
-        myBookData: tempBookData,
-      }));
-    });
+  async getMyBookings() {
+    const result = await fetchMyBookings(this.props.userEmail);
+    this.setState({ myBookData: result });
   }
 
-  getPromotions() {
-    var tempPromoData = [];
-
-    axios({
-      method: "Get",
-      headers: {
-        "Access-Control-Allow-Origin": api_url,
-      },
-      url: api_url + "/promotion/promos",
-    }).then((res) => {
-      if (res.status === 200 || res.status === 304) {
-        for (let temp of res.data) {
-          const promoData = {
-            id: temp._id,
-            promotionCode: temp.promotionCode,
-            promotionEnd: temp.promotionEnd,
-            promotionInfo: temp.promotionInfo,
-            promotionName: temp.promotionName,
-            promotionPercentage: temp.promotionPercentage,
-            promotionStart: temp.promotionStart,
-          };
-
-          tempPromoData.push(promoData);
-        }
-      }
-      this.setState((prevState) => ({
-        promotionData: tempPromoData,
-      }));
-    });
+  async getPromotions() {
+    const result = await fetchPromotions();
+    this.setState({ promotionData: result });
   }
 
   render() {
@@ -637,11 +515,11 @@ class Dashboard extends Component {
           )}
 
           {/* Support Chat */}
-          <Chat
+          {/* <Chat
             userFirstName={this.props.userFirstName}
             userLastName={this.props.userLastName}
             userType={this.props.userType}
-          />
+          /> */}
         </div>
       </React.Fragment>
     );

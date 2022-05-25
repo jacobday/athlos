@@ -32,12 +32,13 @@
 ## Features
 
 ### Core Features
+
 - Login & Sign-Up
   - Secure login and sign-up validation
   - Google sign-in integration
 - Search & Filtering
   - Search by location or facility name
-  - Filter by sport 
+  - Filter by sport
 - Booking & Payments
   - Booking cancelation, refunds, and feedback
   - Equipment rental
@@ -54,22 +55,23 @@
   - Customer visualization for most-booked sports
 - Chat Support
   - Live chat with customer support
-  - View user status (online/offline) and message status (delivered, read, typing)  
+  - View user status (online/offline) and message status (delivered, read, typing)
 
 ### Additional Features
+
 - Google Map Integration
 - Suggestions & Subscriptions
 - Accessibility
   - Voice search
   - Reduced motion support
 
-## Customer Demo
+## Customer Demo (v0.5.0)
 
 [![Athlos Demo Video](https://i.imgur.com/KsqPxOV.png)](https://www.youtube.com/watch?v=CGNq9niOS1I "Athlos Demo Video")
 
 ## Credits
 
-Versions <= 0.5.0 of Athlos were created as part of a group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I).  Development was distributed into 5 two-week sprints utilizing Agile development models.
+Versions $\leq$ 0.5.0 of Athlos were created as part of a group project for CSCI-P465/565 (Software Engineering for Information Systems I & Software Engineering I). Development was distributed into 5 two-week sprints utilizing Agile development models.
 
 ### Team Members
 

@@ -6,7 +6,12 @@ import TimeSlot from "./TimeSlot/TimeSlot";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NumberFormat from "react-number-format";
 import Counters from "./Counters/Counters";
-import { ExtrasData, GearData, TestPromotionData } from "../../../../data";
+import {
+  ExtrasData,
+  fetchReservedSlots,
+  GearData,
+  TestPromotionData,
+} from "../../../../data";
 import uniqid from "uniqid";
 import axios from "axios";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
@@ -459,53 +464,9 @@ class CheckoutModal extends Component {
     }
   }
 
-  getReservedSlots() {
-    var api_url;
-    if (process.env.NODE_ENV === "production") {
-      api_url = REACT_APP_PRODUCTION_URL;
-    } else {
-      api_url = REACT_APP_LOCAL_URL;
-    }
-
-    axios({
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": api_url,
-      },
-      url: api_url + "/book/booked_slots",
-    })
-      .then((res) => {
-        var reservedSlots = {};
-
-        if (res.status === 200 || res.status === 304) {
-          for (let temp of res.data) {
-            if (reservedSlots[temp.facilityID] === undefined) {
-              reservedSlots[temp.facilityID] = [temp.intime];
-            } else {
-              reservedSlots[temp.facilityID].push(temp.intime);
-            }
-          }
-        }
-
-        this.setState({ reservedSlots });
-        // this.setState((prevState) => ({
-        //   selectedInterests: interest,
-        // }));
-      })
-      .catch(function (err) {
-        console.log(err);
-        if (err.response) {
-          if (err.response.status === 404) {
-            console.log("Couldn't retrieve reserved slots");
-          }
-        } else if (err.request) {
-          //Response not received from API
-          console.log("Error: ", err.request);
-        } else {
-          //Unexpected Error
-          console.log("Error", err.message);
-        }
-      });
+  async getReservedSlots() {
+    const result = await fetchReservedSlots(this.props.userEmail);
+    this.setState({ reservedSlots: result });
   }
 
   componentDidUpdate() {
