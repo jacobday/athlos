@@ -7,12 +7,12 @@
 <h4>Reserve your favorite sports facilities, hire personal trainers, and enlist game officials to oversee your next match.</h4>
   
   <p>
-  <a href="https://github.com/jacobday/athlos-api/actions/workflows/node.js.yml">
-    <img alt="latest release" src="https://github.com/jacobday/athlos-api/actions/workflows/node.js.yml/badge.svg?branch=main">
+  <a href="https://github.com/jacobday/athlos/actions/workflows/node.js.yml">
+    <img alt="latest release" src="https://github.com/jacobday/athlos/actions/workflows/node.js.yml/badge.svg?branch=main">
   </a>
 
   <a href="https://github.com/jacobday/athlos-api/releases/latest">
-    <img alt="latest release" src="https://badgen.net/github/release/jacobday/athlos-api">
+    <img alt="latest release" src="https://badgen.net/github/release/jacobday/athlos">
   </a>
 
   <a href="https://github.com/prettier/prettier">
