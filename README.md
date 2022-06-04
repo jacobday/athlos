@@ -1,4 +1,4 @@
-![Athlos Banner](https://imgur.com/L6LjUZB.jpg)
+[![Athlos Banner](https://imgur.com/L6LjUZB.jpg)](https://athlos.herokuapp.com)
 
 <h2 align="center">Athlos Booking Management</h2>
 
@@ -7,12 +7,12 @@
 <h4>Reserve your favorite sports facilities, hire personal trainers, and enlist game officials to oversee your next match.</h4>
   
   <p>
-  <a href="https://github.com/jacobday/athlos/actions/workflows/node.js.yml">
-    <img alt="latest release" src="https://github.com/jacobday/athlos/actions/workflows/node.js.yml/badge.svg?branch=main">
+  <a href="https://github.com/jacobday/athlos-api/actions/workflows/node.js.yml">
+    <img alt="latest release" src="https://github.com/jacobday/athlos-api/actions/workflows/node.js.yml/badge.svg?branch=main">
   </a>
 
-  <a href="https://github.com/jacobday/athlos/releases/latest">
-    <img alt="latest release" src="https://badgen.net/github/release/jacobday/athlos">
+  <a href="https://github.com/jacobday/athlos-api/releases/latest">
+    <img alt="latest release" src="https://badgen.net/github/release/jacobday/athlos-api">
   </a>
 
   <a href="https://github.com/prettier/prettier">
@@ -24,9 +24,10 @@
   <div>
     <a href="#features">Features</a> •
     <a href="#customer-demo-v050">Customer Demo</a> •
-    <a href="#credits">Credits</a>
+    <a href="#credits">Credits</a> •
+    <a href="https://github.com/jacobday/athlos-api">API Repository</a>
   </div>
-  
+
 </div>
 
 ## Features
