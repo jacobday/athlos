@@ -23,7 +23,7 @@
   
   <div>
     <a href="#features">Features</a> •
-    <a href="#customer-demo">Customer Demo</a> •
+    <a href="#customer-demo-v050">Customer Demo</a> •
     <a href="#credits">Credits</a>
   </div>
   
