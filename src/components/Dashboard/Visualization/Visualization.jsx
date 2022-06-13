@@ -21,7 +21,7 @@ class Visualization extends Component {
 
           {/* [Customer] Favorite Sports Graph */}
           {this.props.user.type === "Customer" && (
-            <FavoriteSportsGraph userEmail={this.props.userEmail} />
+            <FavoriteSportsGraph user={this.props.user} />
           )}
         </section>
 

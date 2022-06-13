@@ -24,7 +24,7 @@ class FavoriteSportsGraph extends Component {
   }
 
   async getMyBookings() {
-    const result = await fetchMyBookings(this.props.userEmail);
+    const result = await fetchMyBookings(this.props.user.email);
     this.setState({ myBookData: result });
   }
 
