@@ -10,11 +10,7 @@ class ShortcutModal extends Component {
           <React.Fragment>
             <InterestModal
               onCloseModal={this.props.onCloseModal}
-              userEmail={this.props.userEmail}
-              userFirstName={this.props.userFirstName}
-              userLastName={this.props.userLastName}
-              userRewardPoints={this.props.userRewardPoints}
-              userImage={this.props.userImage}
+              user={this.props.user}
             />
           </React.Fragment>
         )}
@@ -23,7 +19,7 @@ class ShortcutModal extends Component {
           <React.Fragment>
             <PaymentModal
               onCloseModal={this.props.onCloseModal}
-              userEmail={this.props.userEmail}
+              user={this.props.user}
             />
           </React.Fragment>
         )}

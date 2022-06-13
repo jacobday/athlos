@@ -11,21 +11,21 @@ class Visualization extends Component {
       <React.Fragment>
         <section className={styles.container}>
           {/* [Manager] Earnings Graph */}
-          {this.props.userType === "Manager" && <EarningsGraph />}
+          {this.props.user.type === "Manager" && <EarningsGraph />}
 
           {/* [Manager] Sales Graph */}
-          {this.props.userType === "Manager" && <SalesGraph />}
+          {this.props.user.type === "Manager" && <SalesGraph />}
 
           {/* [Manager] Expenses Graph */}
-          {this.props.userType === "Manager" && <ExpensesGraph />}
+          {this.props.user.type === "Manager" && <ExpensesGraph />}
 
           {/* [Customer] Favorite Sports Graph */}
-          {this.props.userType === "Customer" && (
+          {this.props.user.type === "Customer" && (
             <FavoriteSportsGraph userEmail={this.props.userEmail} />
           )}
         </section>
 
-        {this.props.userType === "Customer" && (
+        {this.props.user.type === "Customer" && (
           <React.Fragment></React.Fragment>
         )}
       </React.Fragment>

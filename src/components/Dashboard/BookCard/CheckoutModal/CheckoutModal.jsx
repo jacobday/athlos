@@ -22,13 +22,15 @@ const {
 } = process.env;
 
 let startSection = 1;
-let userRewardPoints = localStorage.getItem("rewardPoints");
 
 class CheckoutModal extends Component {
   constructor(props) {
     super(props);
 
-    if (this.props.userType === "Employee" || this.props.userType === "Guest") {
+    if (
+      this.props.user.type === "Employee" ||
+      this.props.user.type === "Guest"
+    ) {
       startSection = 0;
     }
 
@@ -54,9 +56,9 @@ class CheckoutModal extends Component {
       promotionName: "",
       redeemedPoints: null,
 
-      reservationFirstName: this.props.userFirstName,
-      reservationLastName: this.props.userLastName,
-      reservationEmail: this.props.userEmail,
+      reservationFirstName: this.props.user.firstName,
+      reservationLastName: this.props.user.lastName,
+      reservationEmail: this.props.user.email,
       isEmailValid: false,
 
       // Checkout Modal Properties
@@ -74,7 +76,10 @@ class CheckoutModal extends Component {
       reservedFacilities: [],
     };
 
-    if (this.props.userType === "Employee" || this.props.userType === "Guest") {
+    if (
+      this.props.user.type === "Employee" ||
+      this.props.user.type === "Guest"
+    ) {
       this.state.reservationFirstName = null;
       this.state.reservationLastName = null;
       this.state.reservationEmail = null;
@@ -110,13 +115,14 @@ class CheckoutModal extends Component {
         if (res.status === 200) {
           console.log("Booked Successfully");
 
+          // TODO re-implement reward point calculation
           // Calculate points (points equivalent to 2% back)
-          localStorage.setItem(
-            "rewardPoints",
-            parseInt(userRewardPoints) -
-              this.state.redeemedPoints +
-              parseInt(this.state.reservationTotal * 0.2)
-          );
+          // localStorage.setItem(
+          //   "rewardPoints",
+          //   parseInt(userRewardPoints) -
+          //     this.state.redeemedPoints +
+          //     parseInt(this.state.reservationTotal * 0.2)
+          // );
 
           this.props.handleRefresh();
           this.props.onCloseModal();
@@ -367,7 +373,7 @@ class CheckoutModal extends Component {
       pointValue = parseInt(pointValue);
 
       if (!isNaN(pointValue)) {
-        if (pointValue < 0 || pointValue > userRewardPoints) {
+        if (pointValue < 0 || pointValue > this.props.user.rewardPoints) {
           // Invalid Styling
           pointInput.style.boxShadow = "0 0 8px rgba(255, 0, 0, 0.7)";
           pointInput.style.border = "1px solid red";
@@ -465,7 +471,7 @@ class CheckoutModal extends Component {
   }
 
   async getReservedSlots() {
-    const result = await fetchReservedSlots(this.props.userEmail);
+    const result = await fetchReservedSlots(this.props.user.email);
     this.setState({ reservedSlots: result });
   }
 
@@ -480,8 +486,6 @@ class CheckoutModal extends Component {
   }
 
   render() {
-    userRewardPoints = localStorage.getItem("rewardPoints"); // tmp
-
     const {
       props: {
         facilityName,
@@ -817,17 +821,17 @@ class CheckoutModal extends Component {
                     {/* Checkout Payment Information */}
                     <aside className={styles.payment}>
                       <div className={styles.title}>
-                        {this.props.userType !== "Employee" && (
+                        {this.props.user.type !== "Employee" && (
                           <React.Fragment>
                             Enter your payment details
                           </React.Fragment>
                         )}
-                        {this.props.userType === "Employee" && (
+                        {this.props.user.type === "Employee" && (
                           <React.Fragment>Guest Payment Method</React.Fragment>
                         )}
                       </div>
                       <form onSubmit={(e) => this.onPayCredit(e)}>
-                        {this.props.userType !== "Employee" && (
+                        {this.props.user.type !== "Employee" && (
                           <React.Fragment>
                             <input
                               id="name"
@@ -915,8 +919,8 @@ class CheckoutModal extends Component {
 
                         <div className={styles.discounts}>
                           {/* Reward Points */}
-                          {this.props.userType !== "Employee" &&
-                            this.props.userType !== "Guest" && (
+                          {this.props.user.type !== "Employee" &&
+                            this.props.user.type !== "Guest" && (
                               <React.Fragment>
                                 {/* Promotion Code */}
                                 <section>
@@ -932,7 +936,7 @@ class CheckoutModal extends Component {
                                 <section>
                                   <label htmlFor="rewards">
                                     Reward Points -{" "}
-                                    {userRewardPoints -
+                                    {this.props.user.rewardPoints -
                                       this.state.redeemedPoints}{" "}
                                     remaining
                                   </label>
@@ -943,13 +947,13 @@ class CheckoutModal extends Component {
                                     value={this.state.redeemedPoints}
                                     onChange={this.validatePoints}
                                     min={0}
-                                    max={userRewardPoints}
+                                    max={this.props.user.rewardPoints}
                                   />
                                 </section>
                               </React.Fragment>
                             )}
                           {/* [Employee] Cash Option */}
-                          {this.props.userType === "Employee" && (
+                          {this.props.user.type === "Employee" && (
                             <section className={styles.cash}>
                               <input type="checkbox" />
                               <div>Paid in cash</div>
@@ -1094,7 +1098,7 @@ class CheckoutModal extends Component {
                         </button>
                       )} */}
 
-                      {this.props.userType === "Employee" && (
+                      {this.props.user.type === "Employee" && (
                         <button
                           onClick={this.onPay}
                           className={[styles.button, styles.buttonPrimary].join(
@@ -1113,7 +1117,7 @@ class CheckoutModal extends Component {
                         </button>
                       )}
 
-                      {this.props.userType !== "Employee" &&
+                      {this.props.user.type !== "Employee" &&
                         this.state.reservationTotal === 0 && (
                           <button
                             onClick={this.onPay}
@@ -1134,7 +1138,7 @@ class CheckoutModal extends Component {
                           </button>
                         )}
 
-                      {this.props.userType !== "Employee" &&
+                      {this.props.user.type !== "Employee" &&
                         this.state.reservationTotal > 0 && (
                           <div className={styles.paypal}>
                             <PayPalScriptProvider

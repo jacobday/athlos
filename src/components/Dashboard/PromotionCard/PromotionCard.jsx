@@ -112,7 +112,7 @@ class PromotionCard extends Component {
               </div>
             )}
             {/* Delete Button */}
-            {this.props.userType === "Manager" && (
+            {this.props.user.type === "Manager" && (
               <button
                 className={[styles.button, styles.deleteButton].join(" ")}
                 onClick={this.onDelete}
@@ -120,7 +120,7 @@ class PromotionCard extends Component {
                 Delete
               </button>
             )}
-            {this.props.userType === "Customer" && (
+            {this.props.user.type === "Customer" && (
               <button
                 title={promotionCode}
                 className={[styles.button, styles.buttonPrimary].join(" ")}

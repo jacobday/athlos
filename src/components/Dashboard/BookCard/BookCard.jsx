@@ -103,11 +103,7 @@ class BookCard extends Component {
             reservationPeriodEnd={reservationPeriodEnd}
             isAuthenticated={isAuthenticated}
             onShowModal={this.props.onShowModal}
-            userFirstName={this.props.userFirstName}
-            userLastName={this.props.userLastName}
-            userEmail={this.props.userEmail}
-            userType={this.props.userType}
-            userRewardPoints={this.props.userRewardPoints}
+            user={this.props.user}
             handleRefresh={this.props.handleRefresh}
           />
         )}

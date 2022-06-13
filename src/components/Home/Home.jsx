@@ -61,12 +61,9 @@ class Home extends Component {
               {/* Navigation: User Login/Sign Up Buttons [Right] */}
               <NavProfile
                 isAuthenticated={this.props.isAuthenticated}
-                userFirstName={this.props.userFirstName}
-                userLastName={this.props.userLastName}
-                userType={this.props.userType}
+                user={this.props.user}
                 onShowModal={this.props.onShowModal}
                 onLogout={this.props.onLogout}
-                userRewardPoints={this.props.userRewardPoints}
               />
             </div>
           </div>
