@@ -74,15 +74,11 @@ class PromotionCard extends Component {
     const random = Math.floor(Math.random() * colors.length);
     const randomColor = "promo" + colors[random];
 
-    // Card Load Animation
-    let fadeDelay = { animationDelay: animationDelay + "s" };
+ 
 
     return (
       <React.Fragment>
-        <div
-          className={[styles.card, styles.loadIn].join(" ")}
-          style={fadeDelay}
-        >
+        <div className={[styles.card, styles.loadIn].join(" ")}>
           <div className={[styles.image, randomColor].join(" ")}>
             <img src="images/promotion.svg" alt="Promotion" />
           </div>

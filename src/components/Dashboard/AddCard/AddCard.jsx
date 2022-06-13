@@ -20,11 +20,6 @@ class AddCard extends Component {
   };
 
   render() {
-    const {
-      props: { animationDelay },
-    } = this;
-
-    let fadeDelay = { animationDelay: animationDelay + "s" };
     let cardTitle =
       "Add " +
       this.props.type.charAt(0).toUpperCase() +
@@ -36,7 +31,6 @@ class AddCard extends Component {
         <button
           className={[styles.card, styles.loadIn].join(" ")}
           onClick={this.onClickAdd}
-          style={fadeDelay}
           title={cardTitle}
         >
           <i>

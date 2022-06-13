@@ -58,8 +58,8 @@
 }
 
 .loadIn {
-  animation: load-in 0.4s ease forwards;
-  opacity: 0.7;
+  animation: load-in 0.1s ease forwards;
+  opacity: 0.8;
 }
 
 @keyframes fade-in {

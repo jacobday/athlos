@@ -81,7 +81,6 @@ class MyBookCard extends Component {
       "images/" +
       facilitySport.toString().toLowerCase().replace(/ /g, "") +
       ".jpg";
-    let fadeDelay = { animationDelay: animationDelay + "s" };
 
     return (
       <React.Fragment>
@@ -89,7 +88,6 @@ class MyBookCard extends Component {
         {!this.state.isDeleted && (
           <div
             className={[styles.card, styles.loadIn].join(" ")}
-            style={fadeDelay}
           >
             <div className={styles.image}>
               <img src={sportImage} alt={facilitySport} />

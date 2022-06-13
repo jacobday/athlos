@@ -83,9 +83,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    var i = 0;
-    var animationDelay = 0;
-
     // [Guest/Customer/Employee] Generates n BookCard components from Database (filtered by facilityLocation & facilityName)
     const nBookCards = this.state.facilityData
       .filter((facility) => {
@@ -113,12 +110,6 @@ class Dashboard extends Component {
           reservationPeriodStart,
           reservationPeriodEnd,
         }) => {
-          if (i >= 3) {
-            animationDelay += 0.05;
-            i = 0;
-          }
-          i += 1;
-
           return (
             <React.Fragment>
               <BookCard
@@ -130,7 +121,6 @@ class Dashboard extends Component {
                 facilitySport={facilitySport}
                 facilityInfo={facilityInfo}
                 availableNow={availableNow}
-                animationDelay={animationDelay}
                 reservationPeriodStart={reservationPeriodStart}
                 reservationPeriodEnd={reservationPeriodEnd}
                 isAuthenticated={this.props.isAuthenticated}
@@ -170,12 +160,6 @@ class Dashboard extends Component {
           reservationPeriodStart,
           reservationPeriodEnd,
         }) => {
-          if (i >= 3) {
-            animationDelay += 0.05;
-            i = 0;
-          }
-          i += 1;
-
           return (
             <React.Fragment>
               <EditCard
@@ -187,7 +171,6 @@ class Dashboard extends Component {
                 facilitySport={facilitySport}
                 facilityInfo={facilityInfo}
                 availableNow={availableNow}
-                animationDelay={animationDelay}
                 reservationPeriodStart={reservationPeriodStart}
                 reservationPeriodEnd={reservationPeriodEnd}
                 isAuthenticated={this.props.isAuthenticated}
@@ -210,12 +193,6 @@ class Dashboard extends Component {
         promotionPercentage,
         promotionInfo,
       }) => {
-        if (i >= 3) {
-          animationDelay += 0.05;
-          i = 0;
-        }
-        i += 1;
-
         return (
           <React.Fragment>
             <PromotionCard
@@ -227,7 +204,6 @@ class Dashboard extends Component {
               promotionEnd={promotionEnd}
               promotionPercentage={promotionPercentage}
               promotionInfo={promotionInfo}
-              animationDelay={animationDelay}
               user={this.props.user}
               handleRefresh={this.handleRefresh}
             />
@@ -253,12 +229,6 @@ class Dashboard extends Component {
         latitude,
         longitude,
       }) => {
-        if (i >= 3) {
-          animationDelay += 0.05;
-          i = 0;
-        }
-        i += 1;
-
         return (
           <React.Fragment>
             <MyBookCard
@@ -453,7 +423,6 @@ class Dashboard extends Component {
               <AddCard
                 key={uniqid("", "-addcard")}
                 type={"facility"}
-                animationDelay={animationDelay}
                 handleRefresh={this.handleRefresh}
               />
               {nEditCards && nEditCards}
@@ -472,7 +441,6 @@ class Dashboard extends Component {
               <AddCard
                 key={uniqid("", "-addcard")}
                 type={"equipment"}
-                animationDelay={animationDelay}
                 handleRefresh={this.handleRefresh}
               />
             </div>
@@ -484,7 +452,6 @@ class Dashboard extends Component {
               <AddCard
                 key={uniqid("", "-addcard")}
                 type={"promotion"}
-                animationDelay={animationDelay}
                 handleRefresh={this.handleRefresh}
               />
               {nPromotionCards}

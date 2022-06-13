@@ -59,16 +59,12 @@ class EditCard extends Component {
       "images/" +
       facilitySport.toString().toLowerCase().replace(/ /g, "") +
       ".jpg";
-    let fadeDelay = { animationDelay: animationDelay + "s" };
 
     return (
       <React.Fragment>
         {/* Facility Card */}
         {!this.state.isDeleted && (
-          <div
-            className={[styles.card, styles.loadIn].join(" ")}
-            style={fadeDelay}
-          >
+          <div className={[styles.card, styles.loadIn].join(" ")}>
             {/* Facility Image */}
             <div className={styles.image}>
               <img src={sportImage} alt={facilitySport} />
