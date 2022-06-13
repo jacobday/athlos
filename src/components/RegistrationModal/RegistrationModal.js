@@ -7,8 +7,8 @@ import { connect } from "react-redux";
 import { registerUser, loginUser } from "../../actions/authActions";
 
 class RegistrationModal extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       showPassword: false,
       passwordType: "password",
@@ -175,11 +175,12 @@ class RegistrationModal extends Component {
 
   componentDidMount() {
     var modal = document.getElementById("userForm");
+    let self = this;
 
     // Hide Modal when clicked out of
     window.onclick = function (event) {
       if (event.target === modal) {
-        this.props.onHideModal();
+        self.props.onHideModal();
       }
     };
 
