@@ -1,6 +1,5 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-// import {refreshTokenSetup} from ""
 import styles from "./GoogleLoginButton.module.css";
 import "./GoogleLoginButton.css";
 import axios from "axios";
@@ -54,7 +53,7 @@ function GoogleLoginButton(props) {
   };
 
   const onFailure = (res) => {
-    console.log("[Login Failed] res:", res);
+    console.log("[Google Login Error] res:", res);
   };
 
   return (
