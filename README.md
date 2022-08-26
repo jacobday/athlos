@@ -10,6 +10,10 @@
   <a href="https://github.com/jacobday/athlos/actions/workflows/node.js.yml">
     <img alt="latest release" src="https://github.com/jacobday/athlos/actions/workflows/node.js.yml/badge.svg?branch=main">
   </a>
+  
+  <a href="https://athlosbooking.netlify.app">
+    <img alt="deploy status" src="https://api.netlify.com/api/v1/badges/287da8ed-d258-4369-9fab-7892739e72e3/deploy-status">
+  </a>
 
   <a href="https://github.com/jacobday/athlos-api/releases/latest">
     <img alt="latest release" src="https://badgen.net/github/release/jacobday/athlos">
