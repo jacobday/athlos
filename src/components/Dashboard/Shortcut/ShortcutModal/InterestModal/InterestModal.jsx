@@ -30,7 +30,7 @@ class InterestModal extends Component {
   }
 
   async getInterests() {
-    const result = await fetchInterests(this.props.userEmail);
+    const result = await fetchInterests(this.props.user.email);
     this.setState({ selectedInterests: result });
   }
 
@@ -49,7 +49,7 @@ class InterestModal extends Component {
       },
       url: api_url + "/interests/add",
       data: {
-        email: this.props.userEmail,
+        email: this.props.user.email,
         interest: this.state.selectedInterests,
       },
     })
@@ -174,10 +174,10 @@ class InterestModal extends Component {
                 <div className={styles.profile}>
                   <div className={styles.profileIcon}>
                     <img
-                      src={this.props.userImage}
+                      src={this.props.user.image}
                       alt={
-                        this.props.userFirstName.charAt(0) +
-                        this.props.userLastName.charAt(0)
+                        this.props.user.firstName.charAt(0) +
+                        this.props.user.lastName.charAt(0)
                       }
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null;
@@ -186,10 +186,10 @@ class InterestModal extends Component {
                       }}
                     ></img>
                   </div>
-                  <p>First Name: {this.props.userFirstName}</p>
-                  <p>Last Name: {this.props.userLastName}</p>
-                  <p>Email ID: {this.props.userEmail}</p>
-                  <p>Your Reward Points: {this.props.userRewardPoints}</p>
+                  <p>First Name: {this.props.user.firstName}</p>
+                  <p>Last Name: {this.props.user.lastName}</p>
+                  <p>Email ID: {this.props.user.email}</p>
+                  <p>Your Reward Points: {this.props.user.rewardPoints}</p>
                 </div>
               </div>
             )}

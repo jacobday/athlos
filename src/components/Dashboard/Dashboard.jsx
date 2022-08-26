@@ -19,9 +19,9 @@ class Dashboard extends Component {
 
     // Set default tab by user type
     let defaultTab = "Book";
-    if (props.userType === "Customer" || props.userType === "Manager") {
+    if (props.user.type === "Customer" || props.user.type === "Manager") {
       defaultTab = "Dashboard";
-    } else if (props.userType === "Support") {
+    } else if (props.user.type === "Support") {
       defaultTab = "Chat Support";
     }
 
@@ -73,7 +73,7 @@ class Dashboard extends Component {
   }
 
   async getMyBookings() {
-    const result = await fetchMyBookings(this.props.userEmail);
+    const result = await fetchMyBookings(this.props.user.email);
     this.setState({ myBookData: result });
   }
 
@@ -83,9 +83,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    var i = 0;
-    var animationDelay = 0;
-
     // [Guest/Customer/Employee] Generates n BookCard components from Database (filtered by facilityLocation & facilityName)
     const nBookCards = this.state.facilityData
       .filter((facility) => {
@@ -113,12 +110,6 @@ class Dashboard extends Component {
           reservationPeriodStart,
           reservationPeriodEnd,
         }) => {
-          if (i >= 3) {
-            animationDelay += 0.05;
-            i = 0;
-          }
-          i += 1;
-
           return (
             <React.Fragment>
               <BookCard
@@ -130,16 +121,11 @@ class Dashboard extends Component {
                 facilitySport={facilitySport}
                 facilityInfo={facilityInfo}
                 availableNow={availableNow}
-                animationDelay={animationDelay}
                 reservationPeriodStart={reservationPeriodStart}
                 reservationPeriodEnd={reservationPeriodEnd}
                 isAuthenticated={this.props.isAuthenticated}
                 onShowModal={this.props.onShowModal}
-                userFirstName={this.props.userFirstName}
-                userLastName={this.props.userLastName}
-                userEmail={this.props.userEmail}
-                userType={this.props.userType}
-                userRewardPoints={this.props.userRewardPoints}
+                user={this.props.user}
                 handleRefresh={this.handleRefresh}
               />
             </React.Fragment>
@@ -174,12 +160,6 @@ class Dashboard extends Component {
           reservationPeriodStart,
           reservationPeriodEnd,
         }) => {
-          if (i >= 3) {
-            animationDelay += 0.05;
-            i = 0;
-          }
-          i += 1;
-
           return (
             <React.Fragment>
               <EditCard
@@ -191,7 +171,6 @@ class Dashboard extends Component {
                 facilitySport={facilitySport}
                 facilityInfo={facilityInfo}
                 availableNow={availableNow}
-                animationDelay={animationDelay}
                 reservationPeriodStart={reservationPeriodStart}
                 reservationPeriodEnd={reservationPeriodEnd}
                 isAuthenticated={this.props.isAuthenticated}
@@ -214,12 +193,6 @@ class Dashboard extends Component {
         promotionPercentage,
         promotionInfo,
       }) => {
-        if (i >= 3) {
-          animationDelay += 0.05;
-          i = 0;
-        }
-        i += 1;
-
         return (
           <React.Fragment>
             <PromotionCard
@@ -231,8 +204,7 @@ class Dashboard extends Component {
               promotionEnd={promotionEnd}
               promotionPercentage={promotionPercentage}
               promotionInfo={promotionInfo}
-              animationDelay={animationDelay}
-              userType={this.props.userType}
+              user={this.props.user}
               handleRefresh={this.handleRefresh}
             />
           </React.Fragment>
@@ -257,12 +229,6 @@ class Dashboard extends Component {
         latitude,
         longitude,
       }) => {
-        if (i >= 3) {
-          animationDelay += 0.05;
-          i = 0;
-        }
-        i += 1;
-
         return (
           <React.Fragment>
             <MyBookCard
@@ -280,9 +246,6 @@ class Dashboard extends Component {
               totalAmount={totalAmount}
               latitude={latitude}
               longitude={longitude}
-              userFirstName={this.props.userFirstName}
-              userLastName={this.props.userLastName}
-              userEmail={this.props.userEmail}
               handleRefresh={this.handleRefresh}
             />
           </React.Fragment>
@@ -298,10 +261,10 @@ class Dashboard extends Component {
             <div className={styles.navigation}>
               {/* Navigation: Search Bar [Middle] */}
               <div className={styles.menu}>
-                {this.props.userType !== "Support" && (
+                {this.props.user.type !== "Support" && (
                   <div className={styles.search}>
                     <Searchbar
-                      userType={this.props.userType}
+                      user={this.props.user}
                       onClickTabItem={this.onClickTabItem}
                       onResetSearch={this.onResetSearch}
                       handleSearchValue={this.handleSearchValue}
@@ -317,12 +280,9 @@ class Dashboard extends Component {
               <NavProfile
                 key={uniqid("", "-navprofile")}
                 isAuthenticated={this.props.isAuthenticated}
-                userFirstName={this.props.userFirstName}
-                userLastName={this.props.userLastName}
-                userType={this.props.userType}
+                user={this.props.user}
                 onShowModal={this.props.onShowModal}
                 onLogout={this.props.onLogout}
-                userRewardPoints={this.props.userRewardPoints}
               />
             </div>
           </div>
@@ -331,7 +291,7 @@ class Dashboard extends Component {
         {/* Side Navigation Bar */}
         <Sidebar
           key={uniqid("", "-sidebar")}
-          userType={this.props.userType}
+          user={this.props.user}
           activeTab={this.state.activeTab}
           onClick={this.onClickTabItem}
         />
@@ -342,17 +302,14 @@ class Dashboard extends Component {
           {this.state.activeTab === "Dashboard" && (
             <React.Fragment>
               {/* Data Visualization */}
-              {(this.props.userType === "Manager" ||
-                this.props.userType === "Customer") && (
+              {(this.props.user.type === "Manager" ||
+                this.props.user.type === "Customer") && (
                 <section className={styles.dataVisualContainer}>
-                  {this.props.userType === "Manager" && (
-                    <Visualization
-                      userType={this.props.userType}
-                      userEmail={this.props.userEmail}
-                    />
+                  {this.props.user.type === "Manager" && (
+                    <Visualization user={this.props.user} />
                   )}
 
-                  {this.props.userType === "Customer" && (
+                  {this.props.user.type === "Customer" && (
                     <section className={styles.promoContainer}>
                       <img
                         className={styles.promoImage}
@@ -365,7 +322,7 @@ class Dashboard extends Component {
               )}
 
               {/* [Customer] Shortcuts */}
-              {this.props.userType === "Customer" && (
+              {this.props.user.type === "Customer" && (
                 <div className={styles.shortcutContainer}>
                   <Shortcut
                     key={uniqid("", "-shortcut")}
@@ -408,7 +365,6 @@ class Dashboard extends Component {
               {nBookCards.length === 0 && (
                 <ErrorCard
                   key={uniqid("", "-errorcard")}
-                  userType={this.props.userType}
                   onClickTabItem={this.onClickTabItem}
                   handleRefresh={this.handleRefresh}
                 />
@@ -430,10 +386,7 @@ class Dashboard extends Component {
           {this.state.activeTab === "Account" && (
             <React.Fragment>
               <section className={styles.settingsImageContainer}>
-                <Visualization
-                  userType={this.props.userType}
-                  userEmail={this.props.userEmail}
-                />
+                <Visualization user={this.props.user} />
               </section>
               {/* Interest Shortcut */}
               <div className={styles.shortcutContainer}>
@@ -446,11 +399,7 @@ class Dashboard extends Component {
                   icon="fa-solid fa-user"
                   iconClass="icon iconOrange"
                   onClick={this.onClickTabItem}
-                  userEmail={this.props.userEmail}
-                  userFirstName={this.props.userFirstName}
-                  userLastName={this.props.userLastName}
-                  userRewardPoints={this.props.userRewardPoints}
-                  userImage={this.props.userImage}
+                  user={this.props.user}
                 />
                 {/* Payment Shortcut */}
                 <Shortcut
@@ -459,11 +408,10 @@ class Dashboard extends Component {
                   behavior={"showModal"}
                   title="Payments"
                   description="Update Payment"
-                  userEmail={this.props.userEmail}
+                  user={this.props.user}
                   icon="fa-solid fa-credit-card"
                   iconClass="icon iconGreen"
                   onClick={this.onClickTabItem}
-                  userImage={this.props.userImage}
                 />
               </div>
             </React.Fragment>
@@ -475,14 +423,12 @@ class Dashboard extends Component {
               <AddCard
                 key={uniqid("", "-addcard")}
                 type={"facility"}
-                animationDelay={animationDelay}
                 handleRefresh={this.handleRefresh}
               />
               {nEditCards && nEditCards}
               {nEditCards.length === 0 && (
                 <ErrorCard
                   key={uniqid("", "-errorcard")}
-                  userType={this.props.userType}
                   onClickTabItem={this.onClickTabItem}
                 />
               )}
@@ -495,7 +441,6 @@ class Dashboard extends Component {
               <AddCard
                 key={uniqid("", "-addcard")}
                 type={"equipment"}
-                animationDelay={animationDelay}
                 handleRefresh={this.handleRefresh}
               />
             </div>
@@ -507,7 +452,6 @@ class Dashboard extends Component {
               <AddCard
                 key={uniqid("", "-addcard")}
                 type={"promotion"}
-                animationDelay={animationDelay}
                 handleRefresh={this.handleRefresh}
               />
               {nPromotionCards}
@@ -516,9 +460,7 @@ class Dashboard extends Component {
 
           {/* Support Chat */}
           {/* <Chat
-            userFirstName={this.props.userFirstName}
-            userLastName={this.props.userLastName}
-            userType={this.props.userType}
+            user={this.props.user}
           /> */}
         </div>
       </React.Fragment>

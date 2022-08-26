@@ -1,6 +1,5 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-// import {refreshTokenSetup} from ""
 import styles from "./GoogleLoginButton.module.css";
 import "./GoogleLoginButton.css";
 import axios from "axios";
@@ -30,7 +29,8 @@ function GoogleLoginButton(props) {
     })
       .then((res) => {
         if (res.status === 200) {
-          props.handleAuthState(res); // Send res to App.js for state change
+          // TODO fix
+          // props.handleAuthState(res); // Send res to App.js for state change
           console.log("User Added to Database");
         }
       })
@@ -38,7 +38,8 @@ function GoogleLoginButton(props) {
         console.log(err);
         if (err.response) {
           if (err.response.status === 409) {
-            props.handleAuthState(err.response);
+            // TODO fix
+            // props.handleAuthState(err.response);
             console.log("User Already Exists in Database");
           }
         } else if (err.request) {
@@ -52,7 +53,7 @@ function GoogleLoginButton(props) {
   };
 
   const onFailure = (res) => {
-    console.log("[Login Failed] res:", res);
+    console.log("[Google Login Error] res:", res);
   };
 
   return (

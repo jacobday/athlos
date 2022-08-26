@@ -1,30 +1,39 @@
-import React, { Component } from "react";
+import jwt_decode from "jwt-decode";
+import { Component } from "react";
+import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Home, Dashboard, RegistrationModal } from "./components";
-import axios from "axios";
-const { REACT_APP_LOCAL_URL, REACT_APP_PRODUCTION_URL } = process.env;
+import { logoutUser, setCurrentUser } from "./actions/authActions";
+import { Dashboard, Home } from "./components";
+import RegistrationModal from "./components/RegistrationModal/RegistrationModal";
+import store from "./store";
+import setAuthToken from "./utils/setAuthToken";
 
-var api_url;
-if (process.env.NODE_ENV === "production") {
-  api_url = REACT_APP_PRODUCTION_URL;
-} else {
-  api_url = REACT_APP_LOCAL_URL;
+// Check for token to keep user logged in
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(token);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+  // Check for expired token
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
+    // Redirect to Home
+    window.location.href = "/";
+  }
 }
+
 class App extends Component {
-  constructor() {
+  constructor(props = mapStateToProps) {
     super();
 
-    let userData = this.getUser();
-
     this.state = {
-      isAuthenticated: localStorage.getItem("isAuthenticated") === "true",
-      user: userData,
-      userFirstName: userData.firstName,
-      userLastName: userData.lastName,
-      userEmail: userData.email,
-      userType: userData.userType,
-      userImage: userData.profilePicture,
-      userRewardPoints: localStorage.getItem("rewardPoints"),
+      isAuthenticated: props.isAuthenticated,
+      user: props.user,
       showModal: false,
       showModalLogin: false,
       showModalSignUp: false,
@@ -47,70 +56,17 @@ class App extends Component {
     }
   };
 
-  handleAuthState = (res) => {
-    localStorage.setItem("rewardPoints", 100); // tmp
-
-    this.setState({
-      isAuthenticated: true,
-      userFirstName: res.data.firstName,
-      userLastName: res.data.lastName,
-      userEmail: res.data.email,
-      userType: res.data.type,
-      userImage: res.data.profilePicture,
-      userRewardPoints: localStorage.getItem("rewardPoints"),
-      showModal: false,
-    });
-    localStorage.setItem("isAuthenticated", true);
-    localStorage.setItem("user", JSON.stringify(res.data));
-
-    window.location.href = "/dashboard"; // Redirect to Dashboard
-  };
-
   onLogout = () => {
-    axios({
-      method: "GET",
-      url: api_url + "/users/logout",
-    }).then((res) => {
-      if (res.status === 200) {
-        console.log("Logged Out");
-
-        this.setState({
-          isAuthenticated: false,
-          userFirstName: "",
-          userLastName: "",
-          userType: "Guest",
-        });
-      }
-    });
-
+    this.props.logoutUser();
     window.location.href = "/"; // Redirect to Home
-    localStorage.clear();
   };
 
   hideModal = () => {
     this.setState({ showModal: false });
   };
 
-  getUser = () => {
-    let user = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      profilePicture: "",
-      userType: "Guest", // Implemented Options: "Guest", "Customer", "Manager", "Employee", "Support"
-    };
-
-    var storedUser = JSON.parse(localStorage.getItem("user"));
-
-    if (storedUser) {
-      user = storedUser;
-    }
-
-    return user;
-  };
-
   handleRefresh = () => {
-    this.setState({ userRewardPoints: localStorage.getItem("rewardPoints") });
+    // this.setState({ userRewardPoints: localStorage.getItem("rewardPoints") });
   };
 
   render() {
@@ -122,10 +78,7 @@ class App extends Component {
             element={
               <Home
                 isAuthenticated={this.state.isAuthenticated}
-                userFirstName={this.state.userFirstName}
-                userLastName={this.state.userLastName}
-                userRewardPoints={this.state.userRewardPoints}
-                userType={this.state.userType}
+                user={this.state.user}
                 onShowModal={this.showModal}
                 onLogout={this.onLogout}
               />
@@ -136,12 +89,8 @@ class App extends Component {
             element={
               <Dashboard
                 isAuthenticated={this.state.isAuthenticated}
-                userFirstName={this.state.userFirstName}
-                userLastName={this.state.userLastName}
-                userEmail={this.state.userEmail}
-                userType={this.state.userType}
+                user={this.state.user}
                 userImage={this.state.userImage}
-                userRewardPoints={this.state.userRewardPoints}
                 onShowModal={this.showModal}
                 onLogout={this.onLogout}
                 handleRefresh={this.handleRefresh}
@@ -152,7 +101,6 @@ class App extends Component {
         {this.state.showModal && (
           <RegistrationModal
             isSignUpVisible={this.state.showModalSignUp}
-            handleAuthState={this.handleAuthState}
             onShowModal={this.showModal}
             onHideModal={this.hideModal}
             showModalLogin={this.state.showModalLogin}
@@ -164,4 +112,11 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
+  };
+};
+
+export default connect(mapStateToProps, { logoutUser })(App);

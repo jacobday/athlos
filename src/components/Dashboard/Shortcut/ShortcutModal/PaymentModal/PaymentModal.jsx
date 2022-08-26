@@ -21,7 +21,7 @@ class PaymentModal extends Component {
   }
 
   async getPayMethods() {
-    const result = await fetchPayMethods(this.props.userEmail);
+    const result = await fetchPayMethods(this.props.user.email);
     this.setState({ paymentData: result });
   }
 
@@ -37,7 +37,7 @@ class PaymentModal extends Component {
       method: "PUT",
       url: api_url + "/payment/update/" + id,
       data: {
-        userEmail: this.props.userEmail,
+        userEmail: this.props.user.email,
         cardHolderName: e.target.cardholder.value,
         cardNumber: e.target.number.value,
         expiration: e.target.exp.value,

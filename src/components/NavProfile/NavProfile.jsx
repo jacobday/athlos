@@ -37,21 +37,21 @@ class NavProfile extends Component {
             onClick={this.toggleOptions}
           >
             <div className={styles.profileName}>
-              <span>{this.props.userFirstName}</span>
-              <span>{this.props.userLastName}</span>
+              <span>{this.props.user.firstName}</span>
+              <span>{this.props.user.lastName}</span>
             </div>
             <div className={styles.profileIcon}>
               <span>
-                {this.props.userFirstName.charAt(0) +
-                  this.props.userLastName.charAt(0)}
+                {this.props.user.firstName.charAt(0) +
+                  this.props.user.lastName.charAt(0)}
               </span>
             </div>
 
             {this.state.showOptions && (
               <div className={styles.profileOptions}>
-                {this.props.userType === "Customer" && (
+                {this.props.user.type === "Customer" && (
                   <button className={[styles.button, styles.border].join(" ")}>
-                    {this.props.userRewardPoints} Reward Points
+                    {this.props.user.rewardPoints} Reward Points
                   </button>
                 )}
                 <button className={styles.button} onClick={this.props.onLogout}>

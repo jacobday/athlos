@@ -6,12 +6,9 @@ class Chat extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.userType === "Support" && <Agent />}
-        {this.props.userType === "Customer" && (
-          <Client
-            userFirstName={this.props.userFirstName}
-            userLastName={this.props.userLastName}
-          />
+        {this.props.user.type === "Support" && <Agent />}
+        {this.props.user.type === "Customer" && (
+          <Client user={this.props.user} />
         )}
       </React.Fragment>
     );

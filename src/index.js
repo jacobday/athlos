@@ -1,57 +1,59 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./App";
 import "./normalize.css";
 import reportWebVitals from "./reportWebVitals";
-import App from "./App";
+import store from "./store";
 
 // FontAwesome Icons
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-  faFilter,
-  faPlus,
-  faHouseUser,
-  faBookmark,
-  faLayerGroup,
+  faArrowRightFromBracket,
+  faBarcode,
+  faBarsProgress,
+  faBaseball,
+  faBaseballBatBall,
+  faBasketball,
   faBell,
-  faGears,
-  faPenToSquare,
-  faReceipt,
-  faHeadset,
-  faLocationArrow,
+  faBookmark,
+  faBowlingBall,
+  faBuilding,
+  faCalendarCheck,
+  faCircleInfo,
+  faCircleXmark,
+  faClock,
+  faCompactDisc,
+  faCreditCard,
   faEye,
   faEyeSlash,
-  faArrowRightFromBracket,
-  faUser,
-  faClock,
-  faBaseballBatBall,
-  faMinus,
-  faCircleInfo,
-  faBuilding,
-  faFutbol,
-  faBasketball,
-  faVolleyball,
-  faTableTennisPaddleBall,
-  faCircleXmark,
-  faRotateRight,
-  faCompactDisc,
+  faFilter,
   faFootball,
-  faBaseball,
-  faBowlingBall,
-  faPercent,
-  faCalendarCheck,
-  faBarcode,
-  faMedal,
-  faKey,
-  faCreditCard,
+  faFutbol,
+  faGears,
+  faHeadset,
   faHeart,
-  faQrcode,
-  faBarsProgress,
-  faPersonWalking,
   faHeartPulse,
-  faStopwatch20,
-  faStar,
+  faHouseUser,
+  faKey,
+  faLayerGroup,
+  faLocationArrow,
+  faMedal,
   faMicrophone,
+  faMinus,
+  faPenToSquare,
+  faPercent,
+  faPersonWalking,
+  faPlus,
+  faQrcode,
+  faReceipt,
+  faRotateRight,
+  faStar,
+  faStopwatch20,
+  faTableTennisPaddleBall,
+  faUser,
+  faVolleyball,
 } from "@fortawesome/free-solid-svg-icons";
+import { Provider } from "react-redux";
 
 library.add(
   faFilter,
@@ -102,7 +104,9 @@ library.add(
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

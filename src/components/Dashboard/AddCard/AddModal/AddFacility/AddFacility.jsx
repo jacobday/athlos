@@ -9,8 +9,7 @@ import { SupportedSports } from "../../../../../data";
 const {
   REACT_APP_LOCAL_URL,
   REACT_APP_PRODUCTION_URL,
-
-  REACT_APP_API_KEY,
+  REACT_APP_MAPS_API_KEY,
 } = process.env;
 
 class AddFacility extends Component {
@@ -253,7 +252,7 @@ class AddFacility extends Component {
                 {/* Facility Location */}
                 <label htmlFor="facilityLocation">Facility Location</label>
                 <GooglePlacesAutocomplete
-                  apiKey={REACT_APP_API_KEY}
+                  apiKey={REACT_APP_MAPS_API_KEY}
                   autocompletionRequest={{
                     componentRestrictions: {
                       country: ["us"],

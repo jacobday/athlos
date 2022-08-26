@@ -6,7 +6,7 @@ const {
   REACT_APP_AGENT_ID,
 } = process.env;
 
-const Client = (userFirstName, userLastName) => {
+const Client = (user) => {
   const [load, setLoad] = useState(true);
 
   useEffect(() => {

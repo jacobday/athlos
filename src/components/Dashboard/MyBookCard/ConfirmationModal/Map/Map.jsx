@@ -1,13 +1,13 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "./Map.module.css";
-const { REACT_APP_API_KEY } = process.env;
+const { REACT_APP_MAPS_API_KEY } = process.env;
 
 const MapSection = ({ location, zoomLevel }) => (
   <div>
     <div className={styles.map}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: REACT_APP_API_KEY }}
+        bootstrapURLKeys={{ key: REACT_APP_MAPS_API_KEY }}
         defaultCenter={location}
         defaultZoom={zoomLevel}
         yesIWantToUseGoogleMapApiInternals
