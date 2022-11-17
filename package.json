@@ -42,7 +42,7 @@
     "react-speech-recognition": "^3.9.0",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
-    "serve": "^13.0.2",
+    "serve": "^14.1.1",
     "uniqid": "^5.4.0",
     "victory": "^36.3.1",
     "web-vitals": "^2.1.4"
