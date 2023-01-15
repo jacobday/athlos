@@ -1,4 +1,8 @@
 import axios from "axios";
+import FacilityData from "./FacilityData/FacilityData";
+import MyBookingsData from "./MyBookingsData/MyBookingsData";
+import PromotionData from "./PromotionData/PromotionData";
+import ReservedSlotsData from "./ReservedSlotsData/ReservedSlotsData";
 
 const { REACT_APP_LOCAL_URL, REACT_APP_PRODUCTION_URL } = process.env;
 
@@ -11,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 
 export const fetchFacilities = async () => {
   try {
-    var result = [];
+    let result = [];
 
     await axios.get(`${api_url}/facilities`).then((res) => {
       for (let fac of res.data) {
@@ -38,13 +42,37 @@ export const fetchFacilities = async () => {
 
     return result;
   } catch (e) {
-    return [];
+    let result = [];
+
+    for (let fac of FacilityData) {
+      const facData = {
+        uniqFacId: fac.facilityId,
+        facilityName: fac.facilityName,
+        facilityLocation: (
+          fac.facilityLocation.city +
+          "," +
+          fac.facilityLocation.state
+        ).trim(),
+        facilitySport: fac.facilitySports,
+        facilityInfo: fac.facilityInformation,
+        availableNow: false,
+        reservationPeriodStart: parseInt(fac.reservationPeriodStart),
+        reservationPeriodEnd: parseInt(fac.reservationPeriodEnd),
+        latitude: fac.latitude,
+        longitude: fac.longitude,
+      };
+
+      result.push(facData);
+    }
+
+    // Return offline data
+    return result;
   }
 };
 
 export const fetchPromotions = async () => {
   try {
-    var result = [];
+    let result = [];
 
     await axios.get(`${api_url}/promotion/promos`).then((res) => {
       for (let promo of res.data) {
@@ -64,13 +92,14 @@ export const fetchPromotions = async () => {
 
     return result;
   } catch (e) {
-    return [];
+    // Return offline data
+    return PromotionData;
   }
 };
 
 export const fetchMyBookings = async (userEmail) => {
   try {
-    var result = [];
+    let result = [];
 
     await axios
       .post(`${api_url}/book/userbookings`, {
@@ -99,7 +128,29 @@ export const fetchMyBookings = async (userEmail) => {
 
     return result;
   } catch (e) {
-    return [];
+    let result = [];
+
+    for (let booking of MyBookingsData) {
+      const bookingData = {
+        uniqBookingId: booking._id,
+        gear: booking.gear,
+        upgrade: booking.upgrade,
+        intime: booking.intime,
+        outtime: booking.outtime,
+        facilityLocation: booking.facility_info.facilityLocation,
+        latitude: booking.facility_info.latitude,
+        longitude: booking.facility_info.longitude,
+        facilitySport: booking.facility_info.facilitySports,
+        facilityName: booking.facility_info.facilityName,
+        facilityInfo: booking.facility_info.facilityInformation,
+        totalAmount: booking.totalAmount,
+      };
+
+      result.push(bookingData);
+    }
+
+    // Return offline data
+    return result;
   }
 };
 
@@ -143,7 +194,7 @@ export const fetchPayMethods = async (userEmail) => {
 
 export const fetchReservedSlots = async () => {
   try {
-    var result = {};
+    let result = {};
 
     await axios.get(`${api_url}/book/booked_slots`).then((res) => {
       for (let slot of res.data) {
@@ -157,6 +208,16 @@ export const fetchReservedSlots = async () => {
 
     return result;
   } catch (e) {
-    return {};
+    let result = {};
+
+    for (let slot of ReservedSlotsData) {
+      if (result[slot.facilityID] === undefined) {
+        result[slot.facilityID] = [slot.intime];
+      } else {
+        result[slot.facilityID].push(slot.intime);
+      }
+    }
+
+    return result;
   }
 };

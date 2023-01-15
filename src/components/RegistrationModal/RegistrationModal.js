@@ -236,10 +236,10 @@ class RegistrationModal extends Component {
               {this.props.showModalLogin ? (
                 <React.Fragment>
                   <div className={styles.tab} id="login">
-                    {/* <div className={styles.thirdParty}> */}
-                    {/* Google Sign-In Button */}
-                    {/* <GoogleLoginButton />
-                    </div> */}
+                    <div className={styles.thirdParty}>
+                      {/* Google Sign-In Button */}
+                      <GoogleLoginButton />
+                    </div>
                     {/* Email Sign-In */}
                     <form
                       id="login-form"
@@ -298,10 +298,10 @@ class RegistrationModal extends Component {
               {/* User Form: Sign Up Form */}
               {this.props.showModalSignUp ? (
                 <div className={styles.tab} id="sign-up">
-                  {/* <div className={styles.thirdParty}> */}
-                  {/* Google Sign-In Button */}
-                  {/* <GoogleLoginButton />
-                  </div> */}
+                  <div className={styles.thirdParty}>
+                    {/* Google Sign-In Button */}
+                    <GoogleLoginButton />
+                  </div>
                   {/* Email Sign Up */}
                   <form
                     id="signup-form"

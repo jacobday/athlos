@@ -1,0 +1,77 @@
+const MyBookingsData = [
+  {
+    _id: "00",
+    facilityID: "00",
+    firstName: "Athlos",
+    lastName: "Customer",
+    email: "customer@athlos.com",
+    gear: [
+      {
+        id: 1,
+        value: 2,
+        sportType: "Soccer",
+        itemName: "Soccer Ball",
+        itemPrice: 1.75,
+        maxItems: 5,
+      },
+      {
+        id: 2,
+        value: 2,
+        sportType: "Soccer",
+        itemName: "Soccer Cleats",
+        itemPrice: 3,
+        maxItems: 12,
+      },
+      {
+        id: 12,
+        value: 2,
+        sportType: "Soccer",
+        itemName: "Training Cones",
+        itemPrice: 0.15,
+        maxItems: 75,
+      },
+    ],
+    upgrade: [
+      {
+        id: 1,
+        value: 3,
+        itemName: "Referee",
+        itemPrice: 20,
+        maxItems: 3,
+      },
+      {
+        id: 2,
+        value: 1,
+        itemName: "Trainer",
+        itemPrice: 40,
+        maxItems: 1,
+      },
+    ],
+    intime: 13,
+    outtime: 14,
+    totalAmount: 117.49,
+    creationDate: "2022-06-13T18:22:20.756Z",
+    __v: 0,
+    facility_info: {
+      _id: "00",
+      facilityId: "00",
+      facilityName: "Student Recreational Sports Center",
+      facilityLocation: {
+        place_id: "ChIJtxjOXrpmbIgRzbikOxbr4-0",
+        street: "Student Recreational Sports Center (SRSC), East Law Lane",
+        city: " Bloomington",
+        state: " IN",
+        country: " USA",
+      },
+      facilitySports: "Soccer",
+      facilityInformation: "Soccer Field #06A",
+      reservationPeriodStart: "13",
+      reservationPeriodEnd: "20",
+      latitude: 39.1734,
+      longitude: -86.5123139,
+      __v: 0,
+    },
+  },
+];
+
+export default MyBookingsData;

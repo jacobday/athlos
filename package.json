@@ -1,6 +1,6 @@
 {
   "name": "athlos",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "private": true,
   "dependencies": {
     "@cometchat-pro/chat": "^3.0.6",

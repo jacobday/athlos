@@ -34,13 +34,41 @@ export const loginUser = (userData) => (dispatch) => {
       setAuthToken(token);
       // Decode token to get user data
       const decoded = jwt_decode(token);
+
       // Set current user
       dispatch(setCurrentUser(decoded));
 
       window.location.href = "/dashboard";
       console.log("Successfully Logged In");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+
+      if (userData.email == "demo@athlos.com") {
+        const demoUser = {
+          id: "00",
+          firstName: "Athlos",
+          lastName: "Demo",
+          email: "demo@athlos.com",
+          type: "Customer",
+          rewardPoints: 100,
+          iat: Math.floor(new Date() / 1000),
+          exp:
+            Math.floor(new Date() / 1000) +
+            Math.floor(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) / 1000),
+        };
+
+        // const { token } = "test";
+
+        // localStorage.setItem("jwtToken", token);
+        // setAuthToken(token);
+
+        dispatch(setCurrentUser(demoUser));
+        window.location.href = "/dashboard";
+
+        // console.log("Successfully logged in demo user");
+      }
+    });
 };
 
 // Set logged in user
