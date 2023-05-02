@@ -8,6 +8,10 @@ import {
   fetchPayMethods,
   fetchReservedSlots,
 } from "../data";
+import FacilityData from "../data/FacilityData/FacilityData";
+import MyBookingsData from "../data/MyBookingsData/MyBookingsData";
+import PromotionData from "../data/PromotionData/PromotionData";
+import ReservedSlotsData from "../data/ReservedSlotsData/ReservedSlotsData";
 
 jest.mock("axios");
 
@@ -97,7 +101,7 @@ describe("Fetch data:", () => {
   });
 
   describe("when fetch facilities fails", () => {
-    it("should return empty array", async () => {
+    it("should return offline data", async () => {
       // given
       const message = "Network Error";
       axios.get.mockRejectedValueOnce(new Error(message));
@@ -107,7 +111,31 @@ describe("Fetch data:", () => {
 
       // then
       expect(axios.get).toHaveBeenCalledWith(`${api_url}/facilities`);
-      expect(result).toEqual([]);
+
+      let expectedResult = [];
+
+      for (let fac of FacilityData) {
+        const facData = {
+          uniqFacId: fac.facilityId,
+          facilityName: fac.facilityName,
+          facilityLocation: (
+            fac.facilityLocation.city +
+            "," +
+            fac.facilityLocation.state
+          ).trim(),
+          facilitySport: fac.facilitySports,
+          facilityInfo: fac.facilityInformation,
+          availableNow: false,
+          reservationPeriodStart: parseInt(fac.reservationPeriodStart),
+          reservationPeriodEnd: parseInt(fac.reservationPeriodEnd),
+          latitude: fac.latitude,
+          longitude: fac.longitude,
+        };
+
+        expectedResult.push(facData);
+      }
+
+      expect(result).toEqual(expectedResult);
     });
   });
 
@@ -181,7 +209,7 @@ describe("Fetch data:", () => {
 
       // then
       expect(axios.get).toHaveBeenCalledWith(`${api_url}/promotion/promos`);
-      expect(result).toEqual([]);
+      expect(result).toEqual(PromotionData);
     });
   });
 
@@ -332,7 +360,7 @@ describe("Fetch data:", () => {
   });
 
   describe("when fetch my bookings fails", () => {
-    it("should return empty array", async () => {
+    it("should return offline data", async () => {
       // given
       const message = "Network Error";
       axios.post.mockRejectedValueOnce(new Error(message));
@@ -344,7 +372,29 @@ describe("Fetch data:", () => {
       expect(axios.post).toHaveBeenCalledWith(`${api_url}/book/userbookings`, {
         email: "test@athlos.com",
       });
-      expect(result).toEqual([]);
+
+      let expectedResult = [];
+
+      for (let booking of MyBookingsData) {
+        const bookingData = {
+          uniqBookingId: booking._id,
+          gear: booking.gear,
+          upgrade: booking.upgrade,
+          intime: booking.intime,
+          outtime: booking.outtime,
+          facilityLocation: booking.facility_info.facilityLocation,
+          latitude: booking.facility_info.latitude,
+          longitude: booking.facility_info.longitude,
+          facilitySport: booking.facility_info.facilitySports,
+          facilityName: booking.facility_info.facilityName,
+          facilityInfo: booking.facility_info.facilityInformation,
+          totalAmount: booking.totalAmount,
+        };
+
+        expectedResult.push(bookingData);
+      }
+
+      expect(result).toEqual(expectedResult);
     });
   });
 
@@ -492,7 +542,7 @@ describe("Fetch data:", () => {
   });
 
   describe("when fetch reserved slots fails", () => {
-    it("should return empty object", async () => {
+    it("should return offline data", async () => {
       // given
       const message = "Network Error";
       axios.get.mockRejectedValueOnce(new Error(message));
@@ -502,7 +552,18 @@ describe("Fetch data:", () => {
 
       // then
       expect(axios.get).toHaveBeenCalledWith(`${api_url}/book/booked_slots`);
-      expect(result).toEqual({});
+
+      let expectedResult = {};
+
+      for (let slot of ReservedSlotsData) {
+        if (expectedResult[slot.facilityID] === undefined) {
+          expectedResult[slot.facilityID] = [slot.intime];
+        } else {
+          expectedResult[slot.facilityID].push(slot.intime);
+        }
+      }
+
+      expect(result).toEqual(expectedResult);
     });
   });
 });
